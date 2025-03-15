@@ -22,7 +22,7 @@ public class Tutor {
     private String cognome;
 
     @Column(unique = true, nullable = false)
-    private String email;
+    private String username;
     private String password;
 
     private Ruolo ruolo;

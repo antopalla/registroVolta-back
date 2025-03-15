@@ -1,0 +1,46 @@
+package it.itsvoltapalermo.registro.service.impl;
+
+import it.itsvoltapalermo.registro.model.Corso;
+import it.itsvoltapalermo.registro.repository.CorsoRepository;
+import it.itsvoltapalermo.registro.service.def.CorsoService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
+
+
+@RequiredArgsConstructor
+@Service
+public class CorsoServiceJPA implements CorsoService {
+
+    private final CorsoRepository repo;
+
+    @Override
+    public void aggiungiCorso(Corso c) {
+        if (c.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        repo.save(c);
+    }
+
+    @Override
+    public void modificaCorso(Corso c) {
+        if (c.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        repo.save(c);
+    }
+
+    @Override
+    public void eliminaCorso(long id) {
+        repo.delete(getCorso(id));
+    }
+
+    @Override
+    public Corso getCorso(long id) {
+        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    @Override
+    public List<Corso> getCorsi() {
+        return repo.findAll();
+    }
+}
