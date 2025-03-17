@@ -30,22 +30,24 @@ public class StudenteServiceJPA implements StudenteService {
 
     @Override
     public void eliminaStudente(long id) {
-        repo.delete(getStudente(id));
+        Studente s = getStudente(id);
+        s.setDisattivato(true);
+        repo.save(s);
     }
 
     @Override
     public Studente getStudente(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
 
     }
     @Override
     public List<Studente> getStudenti() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
     }
 
     @Override
     public List<Studente> getStudentiByCorso(long idCorso) {
-        return repo.findAllByCorso_Id(idCorso);
+        return repo.findAllByCorso_IdAndDIsattivatoIsFalse(idCorso);
 
     }
     @Override

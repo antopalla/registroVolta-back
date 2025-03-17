@@ -24,7 +24,12 @@ public class Studente {
     @OneToMany(mappedBy = "studente", cascade = CascadeType.MERGE)
     private List<Assenza> assenze;
 
+    @OneToMany(mappedBy = "studente", cascade = CascadeType.MERGE)
+    private List<SchedaValutazione> schedeValutazione;
+
     @ManyToOne
     @JoinColumn(name = "id_corso", nullable = false)
     private Corso corso;
+
+    private boolean disattivato;
 }

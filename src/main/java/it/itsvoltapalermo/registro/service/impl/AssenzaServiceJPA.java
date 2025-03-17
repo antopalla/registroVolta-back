@@ -29,21 +29,23 @@ public class AssenzaServiceJPA implements AssenzaService {
 
     @Override
     public void eliminaAssenza(long id) {
-        repo.delete(getAssenza(id));
+        Assenza a = getAssenza(id);
+        a.setDisattivato(true);
+        repo.save(a);
     }
 
     @Override
     public Assenza getAssenza(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public List<Assenza> getAssenze() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
     }
 
     @Override
     public List<Assenza> getAssenzeByStudente(long idStudente) {
-        return repo.findAllByStudente_Id(idStudente);
+        return repo.findAllByStudente_IdAndDisattivatoIsFalse(idStudente);
     }
 }

@@ -36,17 +36,17 @@ public class TutorServiceJPA implements TutorService {
 
     @Override
     public Tutor getTutor(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public List<Tutor> getTutors() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
 
     }
 
     @Override
     public Tutor login(String username, String password) {
-        return repo.findByUsernameAndPassword(username, password).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByUsernameAndPasswordAndDisattivatoIsFalse(username, password).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 }

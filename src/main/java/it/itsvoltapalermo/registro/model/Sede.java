@@ -25,4 +25,6 @@ public class Sede {
 
     @OneToMany(mappedBy = "sede", cascade = CascadeType.MERGE)
     private List<Corso> corsi;
+
+    private boolean disattivato;
 }

@@ -1,8 +1,7 @@
 package it.itsvoltapalermo.registro.mapper;
 
-import it.itsvoltapalermo.registro.dto.request.AggiungiSedeRequestDTO;
-import it.itsvoltapalermo.registro.dto.request.ModificaSedeRequestDTO;
-import it.itsvoltapalermo.registro.dto.response.SedeResponseDTO;
+import it.itsvoltapalermo.registro.dto.request.governance.AggiungiSedeRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.governance.SedeResponseDTO;
 import it.itsvoltapalermo.registro.model.Sede;
 import org.springframework.stereotype.Component;
 

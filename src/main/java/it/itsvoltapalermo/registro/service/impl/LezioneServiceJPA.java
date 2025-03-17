@@ -30,16 +30,18 @@ public class LezioneServiceJPA implements LezioneService {
 
     @Override
     public void eliminaLezione(long id) {
-        repo.delete(getLezione(id));
+        Lezione l = getLezione(id);
+        l.setDisattivato(true);
+        repo.save(l);
     }
 
     @Override
     public Lezione getLezione(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public List<Lezione> getLezioni() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
     }
 }

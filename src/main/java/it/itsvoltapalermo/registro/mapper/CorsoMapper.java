@@ -1,9 +1,8 @@
 package it.itsvoltapalermo.registro.mapper;
 
-import it.itsvoltapalermo.registro.dto.request.AggiungiCorsoRequestDTO;
-import it.itsvoltapalermo.registro.dto.response.CorsoResponseDTO;
+import it.itsvoltapalermo.registro.dto.request.governance.AggiungiCorsoRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.governance.CorsoResponseDTO;
 import it.itsvoltapalermo.registro.model.Corso;
-import org.hibernate.validator.constraints.CodePointLength;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

@@ -30,16 +30,18 @@ public class SedeServiceJPA implements SedeService {
 
     @Override
     public void eliminaSede(long id) {
-        repo.delete(getSede(id));
+        Sede s = getSede(id);
+        s.setDisattivato(true);
+        repo.save(s);
     }
 
     @Override
     public Sede getSede(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public List<Sede> getSedi() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
     }
 }

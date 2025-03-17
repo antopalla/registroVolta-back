@@ -4,8 +4,12 @@ import it.itsvoltapalermo.registro.model.Assenza;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AssenzaRepository extends JpaRepository<Assenza, Long> {
 
-    List<Assenza> findAllByStudente_Id(long id);
+    Optional<Assenza> findByIdAndDisattivatoIsFalse(long id);
+
+    List<Assenza> findAllByDisattivatoIsFalse();
+    List<Assenza> findAllByStudente_IdAndDisattivatoIsFalse(long id);
 }

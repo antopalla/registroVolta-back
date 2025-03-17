@@ -31,16 +31,18 @@ public class CorsoServiceJPA implements CorsoService {
 
     @Override
     public void eliminaCorso(long id) {
-        repo.delete(getCorso(id));
+        Corso c = getCorso(id);
+        c.setDisattivato(true);
+        repo.save(c);
     }
 
     @Override
     public Corso getCorso(long id) {
-        return repo.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
     @Override
     public List<Corso> getCorsi() {
-        return repo.findAll();
+        return repo.findAllByDisattivatoIsFalse();
     }
 }

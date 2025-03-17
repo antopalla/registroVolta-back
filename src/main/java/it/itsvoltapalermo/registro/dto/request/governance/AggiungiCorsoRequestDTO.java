@@ -1,4 +1,4 @@
-package it.itsvoltapalermo.registro.dto.request;
+package it.itsvoltapalermo.registro.dto.request.governance;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

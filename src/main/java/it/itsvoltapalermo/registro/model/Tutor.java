@@ -3,31 +3,20 @@ package it.itsvoltapalermo.registro.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
 @NoArgsConstructor
 
 @Data
 @Entity
-public class Tutor {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private String nome;
-    private String cognome;
-
-    @Column(unique = true, nullable = false)
-    private String username;
-    private String password;
-
-    private Ruolo ruolo;
+@DiscriminatorValue("TUTOR")
+public class Tutor extends Utente {
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.MERGE)
     private List<Corso> corsi;
-
 }

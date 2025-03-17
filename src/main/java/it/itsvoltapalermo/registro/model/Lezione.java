@@ -33,4 +33,14 @@ public class Lezione {
     @JoinColumn(name = "id_corso", nullable = false)
     private Corso corso;
 
+    @ManyToOne
+    @JoinColumn(name = "id_docente", nullable = false)
+    private Docente docente;
+
+    @ManyToOne
+    @JoinColumn(name = "id_modulo", nullable = false)
+    private Modulo modulo;
+
+    private boolean disattivato;
+
 }

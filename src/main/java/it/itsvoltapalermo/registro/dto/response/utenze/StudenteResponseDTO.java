@@ -1,4 +1,4 @@
-package it.itsvoltapalermo.registro.dto.response;
+package it.itsvoltapalermo.registro.dto.response.utenze;
 
 import it.itsvoltapalermo.registro.model.Assenza;
 import it.itsvoltapalermo.registro.model.Corso;

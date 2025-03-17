@@ -1,4 +1,4 @@
-package it.itsvoltapalermo.registro.dto.response;
+package it.itsvoltapalermo.registro.dto.response.governance;
 
 import lombok.Data;
 

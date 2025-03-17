@@ -35,4 +35,6 @@ public class Corso {
     @ManyToOne
     @JoinColumn(name = "id_tutor", nullable = false)
     private Tutor tutor;
+
+    private boolean disattivato;
 }

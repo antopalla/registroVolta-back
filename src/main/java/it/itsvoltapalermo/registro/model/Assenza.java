@@ -27,4 +27,6 @@ public class Assenza {
     @ManyToOne
     @JoinColumn(name = "id_lezione", nullable = false)
     private Lezione lezione;
+
+    private boolean disattivato;
 }

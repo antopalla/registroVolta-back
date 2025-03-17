@@ -1,8 +1,8 @@
 package it.itsvoltapalermo.registro.facade;
 
-import it.itsvoltapalermo.registro.dto.request.AggiungiCorsoRequestDTO;
-import it.itsvoltapalermo.registro.dto.request.ModificaCorsoRequestDTO;
-import it.itsvoltapalermo.registro.dto.response.CorsoResponseDTO;
+import it.itsvoltapalermo.registro.dto.request.governance.AggiungiCorsoRequestDTO;
+import it.itsvoltapalermo.registro.dto.request.governance.ModificaCorsoRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.governance.CorsoResponseDTO;
 import it.itsvoltapalermo.registro.mapper.CorsoMapper;
 import it.itsvoltapalermo.registro.model.Corso;
 import it.itsvoltapalermo.registro.service.def.CorsoService;

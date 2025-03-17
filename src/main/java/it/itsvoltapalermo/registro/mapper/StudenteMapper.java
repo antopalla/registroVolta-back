@@ -1,7 +1,7 @@
 package it.itsvoltapalermo.registro.mapper;
 
-import it.itsvoltapalermo.registro.dto.request.AggiungiStudenteRequestDTO;
-import it.itsvoltapalermo.registro.dto.response.StudenteResponseDTO;
+import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiStudenteRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.model.Studente;
 import org.springframework.stereotype.Component;
 
