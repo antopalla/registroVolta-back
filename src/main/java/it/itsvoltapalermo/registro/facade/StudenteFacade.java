@@ -2,12 +2,15 @@ package it.itsvoltapalermo.registro.facade;
 
 import it.itsvoltapalermo.registro.dto.request.AggiungiStudenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.ModificaStudenteRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.mapper.StudenteMapper;
 import it.itsvoltapalermo.registro.model.Studente;
 import it.itsvoltapalermo.registro.service.def.CorsoService;
 import it.itsvoltapalermo.registro.service.def.StudenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -35,7 +38,16 @@ public class StudenteFacade {
     }
 
     public void eliminaStudente(Long idStudente){
+
         sService.eliminaStudente(idStudente);
+    }
+
+    public StudenteResponseDTO getStudente(long id){
+        return sMapper.toStudenteResponseDTO(sService.getStudente(id));
+    }
+
+    public List<StudenteResponseDTO> getAllStudenti(){
+        return sMapper.toStudenteResponseListDTO(sService.getStudenti());
     }
 
 }

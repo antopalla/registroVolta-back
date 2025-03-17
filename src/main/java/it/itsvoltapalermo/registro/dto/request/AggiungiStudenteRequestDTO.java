@@ -13,7 +13,7 @@ public class AggiungiStudenteRequestDTO {
     @NotBlank(message = "Il nome non può essere vuoto")
     private String cognome;
 
-    @NotNull
+    @NotNull(message = "L'id del corso non può essere nullo")
     private long idCorso;
 }
 
