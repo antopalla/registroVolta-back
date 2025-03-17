@@ -10,7 +10,6 @@ import java.util.Optional;
 public interface StudenteRepository extends JpaRepository<Studente, Long> {
 
     Optional<Studente> findByIdAndDisattivatoIsFalse(long id);
-
     List<Studente> findAllByDisattivatoIsFalse();
 
     //TODO Inserire disattivato is false nella query
@@ -22,6 +21,6 @@ public interface StudenteRepository extends JpaRepository<Studente, Long> {
             nativeQuery = true)
     List<Studente> findStudentiConAssenzeSuperate(int oreAssenza);
 
-    List<Studente> findAllByCorso_IdAndDIsattivatoIsFalse(long id);
+    List<Studente> findAllByCorso_IdAndDisattivatoIsFalse(long id);
 
 }

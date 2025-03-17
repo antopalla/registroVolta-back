@@ -4,7 +4,6 @@ import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiStudenteRequestDTO
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaStudenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.facade.StudenteFacade;
-import it.itsvoltapalermo.registro.mapper.StudenteMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import java.util.List;
 public class StudenteController {
 
     private final StudenteFacade sFacade;
-    private final StudenteMapper sMapper;
 
     @PostMapping("/admin/studente/registra")
     public ResponseEntity<Void> aggiungiStudente(@Valid @RequestBody AggiungiStudenteRequestDTO request) {
@@ -51,6 +49,18 @@ public class StudenteController {
     public ResponseEntity<List<StudenteResponseDTO>> getAllStudenti(){
 
         List<StudenteResponseDTO> sDTOList = sFacade.getAllStudenti();
+        return ResponseEntity.ok(sDTOList);
+    }
+
+    @GetMapping("/docente/studente/getStudenteByClasse/{id}")
+    public ResponseEntity<List<StudenteResponseDTO>> getStudentiByClasse(@PathVariable long id) {
+        List<StudenteResponseDTO> sDTOList = sFacade.getStudentiByClasse(id);
+        return ResponseEntity.ok(sDTOList);
+    }
+
+    @GetMapping("/tutor/studente/getStudentiByOreAssenza/{oreAssenza}")
+    public ResponseEntity<List<StudenteResponseDTO>> getStudentiByOreAssenza(@PathVariable int oreAssenza) {
+        List<StudenteResponseDTO> sDTOList = sFacade.getStudentiByOreAssenza(oreAssenza);
         return ResponseEntity.ok(sDTOList);
     }
 

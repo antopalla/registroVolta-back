@@ -1,8 +1,6 @@
 package it.itsvoltapalermo.registro.controller;
 
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiTutorRequestDTO;
-import it.itsvoltapalermo.registro.dto.request.utenze.CambiaPasswordRequestDTO;
-import it.itsvoltapalermo.registro.dto.request.utenze.LoginRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.TutorResponseDTO;
 import it.itsvoltapalermo.registro.facade.TutorFacade;
 import it.itsvoltapalermo.registro.mapper.TutorMapper;
@@ -29,18 +27,6 @@ public class TutorController {
     @PostMapping("/admin/tutor/aggiungiAdmin")
     public ResponseEntity<Void> aggiungiAdmin (@Valid @RequestBody AggiungiTutorRequestDTO request) {
         facade.aggiungiAdmin(request);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/all/tutor/login")
-    public ResponseEntity<Void> login (@Valid @RequestBody LoginRequestDTO request) {
-        facade.login(request);
-        return ResponseEntity.ok().build(); //aggiungere security
-    }
-
-    @PostMapping("/authorized/tutor/cambiaPassword")
-    public ResponseEntity<Void> cambiaPassword (@Valid @RequestBody CambiaPasswordRequestDTO request) {
-        facade.cambiaPassword(request);
         return ResponseEntity.ok().build();
     }
 

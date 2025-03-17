@@ -47,7 +47,7 @@ public class StudenteServiceJPA implements StudenteService {
 
     @Override
     public List<Studente> getStudentiByCorso(long idCorso) {
-        return repo.findAllByCorso_IdAndDIsattivatoIsFalse(idCorso);
+        return repo.findAllByCorso_IdAndDisattivatoIsFalse(idCorso);
 
     }
     @Override

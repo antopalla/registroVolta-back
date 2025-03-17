@@ -50,4 +50,12 @@ public class StudenteFacade {
         return sMapper.toStudenteResponseListDTO(sService.getStudenti());
     }
 
+    public List<StudenteResponseDTO> getStudentiByClasse(long id){
+        return sMapper.toStudenteResponseListDTO(sService.getStudentiByCorso(id));
+    }
+
+    public List<StudenteResponseDTO> getStudentiByOreAssenza(int oreAssenza){
+        return sMapper.toStudenteResponseListDTO(sService.getStudentiByOreAssenza(oreAssenza));
+    }
+
 }
