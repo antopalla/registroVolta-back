@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Layout;
 import it.itsvoltapalermo.registro.repository.LayoutRepository;
 import it.itsvoltapalermo.registro.service.def.LayoutService;
@@ -18,13 +19,13 @@ public class LayoutServiceJPA implements LayoutService {
 
     @Override
     public void aggiungiLayout(Layout l) {
-        if(l.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(l.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(l);
     }
 
     @Override
     public void modificaLayout(Layout l) {
-        if(l.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(l.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(l);
     }
 
@@ -37,7 +38,7 @@ public class LayoutServiceJPA implements LayoutService {
 
     @Override
     public Layout getLayout(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Layout non trovato"));
     }
 
     @Override

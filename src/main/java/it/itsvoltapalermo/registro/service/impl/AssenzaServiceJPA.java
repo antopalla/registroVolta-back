@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Assenza;
 import it.itsvoltapalermo.registro.repository.AssenzaRepository;
 import it.itsvoltapalermo.registro.service.def.AssenzaService;
@@ -17,13 +18,13 @@ public class AssenzaServiceJPA implements AssenzaService {
     private final AssenzaRepository repo;
     @Override
     public void aggiungiAssenza(Assenza a) {
-        if (a.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if (a.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(a);
     }
 
     @Override
     public void modificaAssenza(Assenza a) {
-        if (a.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if (a.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(a);
     }
 
@@ -36,7 +37,7 @@ public class AssenzaServiceJPA implements AssenzaService {
 
     @Override
     public Assenza getAssenza(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Assenza non trovata"));
     }
 
     @Override

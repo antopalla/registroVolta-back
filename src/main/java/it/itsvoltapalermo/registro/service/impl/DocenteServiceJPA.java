@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Docente;
 import it.itsvoltapalermo.registro.repository.DocenteRepository;
 import it.itsvoltapalermo.registro.service.def.DocenteService;
@@ -18,13 +19,13 @@ public class DocenteServiceJPA implements DocenteService {
 
     @Override
     public void aggiungiDocente(Docente d) {
-        if(d.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(d.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(d);
     }
 
     @Override
     public void modificaDocente(Docente d) {
-        if(d.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(d.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(d);
     }
 
@@ -37,12 +38,12 @@ public class DocenteServiceJPA implements DocenteService {
 
     @Override
     public Docente getDocenteByUsername(String username) {
-        return repo.findByUsernameAndDisattivatoIsFalse(username).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByUsernameAndDisattivatoIsFalse(username).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "username", "Docente non trovato"));
     }
 
     @Override
     public Docente getDocente(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Docente non trovato"));
     }
 
     @Override

@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Lezione;
 import it.itsvoltapalermo.registro.repository.LezioneRepository;
 import it.itsvoltapalermo.registro.service.def.LezioneService;
@@ -17,13 +18,13 @@ public class LezioneServiceJPA implements LezioneService {
     private final LezioneRepository repo;
     @Override
     public void aggiungiLezione(Lezione l) {
-        if(l.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(l.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(l);
     }
 
     @Override
     public void modificaLezione(Lezione l) {
-        if(l.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(l.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(l);
 
     }
@@ -37,7 +38,7 @@ public class LezioneServiceJPA implements LezioneService {
 
     @Override
     public Lezione getLezione(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Lezione non trovata"));
     }
 
     @Override

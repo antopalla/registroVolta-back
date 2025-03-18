@@ -15,7 +15,7 @@ import java.util.List;
 
 @Data
 @Entity
-@DiscriminatorValue("DOCENTE")
+@DiscriminatorValue("Docente")
 public class Docente extends Utente {
 
     private LocalDate dataNascita;

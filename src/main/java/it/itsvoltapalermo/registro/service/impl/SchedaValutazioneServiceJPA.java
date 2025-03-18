@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.SchedaValutazione;
 import it.itsvoltapalermo.registro.repository.SchedaValutazioneRepository;
 import it.itsvoltapalermo.registro.service.def.SchedaValutazioneService;
@@ -26,13 +27,13 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
 
     @Override
     public void aggiungiSchedaValutazione(SchedaValutazione s) {
-        if(s.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(s.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
     @Override
     public void modificaSchedaValutazione(SchedaValutazione s) {
-        if(s.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(s.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
@@ -45,7 +46,7 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
 
     @Override
     public SchedaValutazione getSchedaValutazione(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Scheda di valutazione non trovata"));
     }
 
     @Override
@@ -69,7 +70,7 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
             valoreCella(sheet, 3, 1, nomeStudente);
 
             // Modulo in B5 (riga 4, colonna 1)
-            valoreCella(sheet, 4, 1, scheda.getNomeModulo());
+            valoreCella(sheet, 4, 1, scheda.getModulo().getDenominazione());
 
             // Docente in B6 (riga 5, colonna 1)
             String nomeDocente = scheda.getDocente().getNome() + " " + scheda.getDocente().getCognome();
@@ -118,7 +119,7 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
             return output;
 
         } catch (Exception e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+            throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "excel", "Errore nella generazione del file Excel");
         }
     }
 
@@ -197,7 +198,7 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
                     Picture pict = drawing.createPicture(anchor, pictureIndex);
                     pict.resize();
                 } catch (Exception e) {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+                    throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "firma", "Errore nella lettura dell'immagine della firma");
                 }
             }
         }

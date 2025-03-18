@@ -14,7 +14,7 @@ import java.util.List;
 
 @Data
 @Entity
-@DiscriminatorValue("TUTOR")
+@DiscriminatorValue("Tutor")
 public class Tutor extends Utente {
 
     @OneToMany(mappedBy = "tutor", cascade = CascadeType.MERGE)

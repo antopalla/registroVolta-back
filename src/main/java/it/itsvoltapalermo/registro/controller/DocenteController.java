@@ -42,7 +42,7 @@ public class DocenteController {
     }
 
     //TODO Modificare con security
-    @GetMapping("/Docente/docente/getDocente/{id}")
+    @GetMapping("/docente/docente/getDocente/{id}")
     public ResponseEntity<DocenteResponseDTO> getDocente (@PathVariable long id) {
         DocenteResponseDTO tDTO = facade.getDocente(id);
         return ResponseEntity.ok(tDTO);

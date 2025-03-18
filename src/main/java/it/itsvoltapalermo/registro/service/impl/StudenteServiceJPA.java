@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Studente;
 import it.itsvoltapalermo.registro.repository.StudenteRepository;
 import it.itsvoltapalermo.registro.service.def.StudenteService;
@@ -18,13 +19,13 @@ public class StudenteServiceJPA implements StudenteService {
 
     @Override
     public void aggiungiStudente(Studente s) {
-        if(s.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(s.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
     @Override
     public void modificaStudente(Studente s) {
-        if(s.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if(s.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
@@ -37,7 +38,7 @@ public class StudenteServiceJPA implements StudenteService {
 
     @Override
     public Studente getStudente(long id) {
-        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Studente non trovato"));
 
     }
     @Override

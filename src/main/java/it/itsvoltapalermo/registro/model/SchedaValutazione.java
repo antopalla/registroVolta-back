@@ -19,8 +19,6 @@ public class SchedaValutazione {
     private String pathScheda;
     private String pathFirma;
 
-    private String nomeModulo;
-
     // Valutazioni da 0 (Insufficiente) a 5 (Ottimo)
     private int livelloPreparazioneIngresso;
     private int socializzazione;

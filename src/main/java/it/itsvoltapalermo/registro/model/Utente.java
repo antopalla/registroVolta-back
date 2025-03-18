@@ -20,8 +20,7 @@ import java.util.List;
 public abstract class Utente implements UserDetails {
 
     @Id
-    @SequenceGenerator(name = "prod_seq", sequenceName = "prod_seq", allocationSize = 1, initialValue = 2)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "prod_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String nome;

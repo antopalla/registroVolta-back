@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Modulo;
 import it.itsvoltapalermo.registro.repository.ModuloRepository;
 import it.itsvoltapalermo.registro.service.def.ModuloService;
@@ -18,13 +19,13 @@ public class ModuloServiceJPA implements ModuloService {
 
     @Override
     public void aggiungiModulo(Modulo m) {
-        if (m.getId() != 0) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if (m.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(m);
     }
 
     @Override
     public void modificaModulo(Modulo m) {
-        if (m.getId() < 1) throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        if (m.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(m);
     }
 
@@ -38,7 +39,7 @@ public class ModuloServiceJPA implements ModuloService {
     @Override
     public Modulo getModulo(long id) {
         return repo.findByIdAndDisattivatoIsFalse(id)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
+                .orElseThrow(()-> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Modulo non trovato"));
     }
 
     @Override

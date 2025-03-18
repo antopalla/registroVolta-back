@@ -13,9 +13,6 @@ public class AggiungiSchedaRequestDTO {
     @NotBlank(message = "Il campo pathFirma non può essere nullo")
     private String pathFirma;
 
-    @NotBlank(message = "Il campo nomeModulo non può essere nullo")
-    private String nomeModulo;
-
     // Valutazioni da 0 (Insufficiente) a 5 (Ottimo)
     private int livelloPreparazioneIngresso;
     private int socializzazione;
@@ -45,5 +42,8 @@ public class AggiungiSchedaRequestDTO {
 
     @NotNull
     private long idLayout;
+
+    @NotNull
+    private long idModulo;
 
 }

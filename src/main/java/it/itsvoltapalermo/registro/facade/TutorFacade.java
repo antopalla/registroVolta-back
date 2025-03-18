@@ -8,6 +8,7 @@ import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Tutor;
 import it.itsvoltapalermo.registro.service.def.TutorService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,16 +19,21 @@ public class TutorFacade {
 
     private final TutorService tutorService;
     private final TutorMapper tutorMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public void aggiungiTutor(AggiungiTutorRequestDTO request) {
         Tutor t = tutorMapper.fromAggiungiTutorRequestDTO(request);
         t.setRuolo(Ruolo.TUTOR);
+        t.setPassword(passwordEncoder.encode(request.getPassword()));
+
         tutorService.aggiungiTutor(t);
     }
 
     public void aggiungiAdmin(AggiungiTutorRequestDTO request) {
         Tutor t = tutorMapper.fromAggiungiTutorRequestDTO(request);
         t.setRuolo(Ruolo.ADMIN);
+        t.setPassword(passwordEncoder.encode(request.getPassword()));
+
         tutorService.aggiungiTutor(t);
     }
 

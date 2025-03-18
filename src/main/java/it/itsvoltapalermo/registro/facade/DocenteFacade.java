@@ -8,6 +8,7 @@ import it.itsvoltapalermo.registro.model.Docente;
 import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.service.def.DocenteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,16 +19,21 @@ public class DocenteFacade {
 
     private final DocenteService dService;
     private final DocenteMapper dMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public void aggiungiDocente(AggiungiDocenteRequestDTO request) {
         Docente d = dMapper.fromAggiungiDocenteRequestDTO(request);
         d.setRuolo(Ruolo.DOCENTE);
+        d.setPassword(passwordEncoder.encode(request.getPassword()));
+
         dService.aggiungiDocente(d);
     }
 
     public void aggiungiAdmin(AggiungiDocenteRequestDTO request) {
         Docente d = dMapper.fromAggiungiDocenteRequestDTO(request);
         d.setRuolo(Ruolo.ADMIN);
+        d.setPassword(passwordEncoder.encode(request.getPassword()));
+
         dService.aggiungiDocente(d);
     }
 
