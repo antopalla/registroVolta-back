@@ -10,12 +10,9 @@ import java.util.List;
 public class StudenteResponseDTO {
 
     private long id;
-
     private String nome;
-
     private String cognome;
-
-    private List<Assenza> assenze;
-
     private Corso corso;
+
+    //TODO decidere come gestire le liste
 }

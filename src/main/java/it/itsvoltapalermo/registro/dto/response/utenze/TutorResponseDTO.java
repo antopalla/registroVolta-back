@@ -11,4 +11,6 @@ public class TutorResponseDTO {
     private String username;
     private String ruolo;
 
+    //TODO decidere come gestire le liste
+
 }

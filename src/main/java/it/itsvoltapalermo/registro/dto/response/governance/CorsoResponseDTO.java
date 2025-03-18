@@ -6,9 +6,9 @@ import lombok.Data;
 public class CorsoResponseDTO {
 
     private long id;
-
     private String nome;
-
     private String descrizione;
+
+    //TODO decidere come gestire le liste
 
 }
