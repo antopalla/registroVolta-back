@@ -1,9 +1,9 @@
 package it.itsvoltapalermo.registro.controller;
 
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiTutorRequestDTO;
+import it.itsvoltapalermo.registro.dto.request.utenze.ModificaTutorRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.TutorResponseDTO;
 import it.itsvoltapalermo.registro.facade.TutorFacade;
-import it.itsvoltapalermo.registro.mapper.TutorMapper;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,6 @@ import java.util.List;
 public class TutorController {
 
     private final TutorFacade facade;
-    private final TutorMapper mapper;
 
     @PostMapping("/admin/tutor/aggiungiTutor")
     public ResponseEntity<Void> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
@@ -30,22 +29,28 @@ public class TutorController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/admin/tutor/eliminaTutor/{id}")
+    @PostMapping("/admin/tutor/modificaTutor")
+    public ResponseEntity<Void> modificaTutor (@Valid @RequestBody ModificaTutorRequestDTO request) {
+        facade.modificaTutor(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/admin/tutor/eliminaTutor/{id}")
     public ResponseEntity<Void> eliminaTutor (@PathVariable long id) {
         facade.eliminaTutor(id);
         return ResponseEntity.ok().build();
     }
 
     //TODO Modificare con security
-    @GetMapping("/authorized/tutor/getTutor/{id}")
+    @GetMapping("/tutor/tutor/getTutor/{id}")
     public ResponseEntity<TutorResponseDTO> getTutor (@PathVariable long id) {
         TutorResponseDTO tDTO = facade.getTutor(id);
         return ResponseEntity.ok(tDTO);
     }
 
-    @GetMapping("/admin/tutor/getAllTutor")
+    @GetMapping("/admin/tutor/getAll")
     public ResponseEntity<List<TutorResponseDTO>> getAllTutor () {
-        List<TutorResponseDTO> tDTO = facade.getAllTutor();
+        List<TutorResponseDTO> tDTO = facade.getTutors();
         return ResponseEntity.ok(tDTO);
     }
 }

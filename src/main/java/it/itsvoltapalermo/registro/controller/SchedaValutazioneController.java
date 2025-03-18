@@ -2,6 +2,7 @@ package it.itsvoltapalermo.registro.controller;
 
 import it.itsvoltapalermo.registro.dto.request.didattica.AggiungiSchedaRequestDTO;
 import it.itsvoltapalermo.registro.facade.SchedaValutazioneFacade;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
@@ -16,8 +17,8 @@ public class SchedaValutazioneController {
 
     private final SchedaValutazioneFacade facade;
 
-    @PostMapping("/docente/schedavalutazione/aggiungischeda")
-    public ResponseEntity<Void> aggiungiScheda(@RequestBody AggiungiSchedaRequestDTO request) {
+    @PostMapping("/docente/schedavalutazione/aggiungi")
+    public ResponseEntity<Void> aggiungiScheda(@Valid  @RequestBody AggiungiSchedaRequestDTO request) {
         facade.aggiungiSchedaValutazione(request);
         return ResponseEntity.ok().build();
     }

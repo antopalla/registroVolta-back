@@ -17,7 +17,7 @@ public class StudenteController {
 
     private final StudenteFacade sFacade;
 
-    @PostMapping("/admin/studente/registra")
+    @PostMapping("/admin/studente/aggiungi")
     public ResponseEntity<Void> aggiungiStudente(@Valid @RequestBody AggiungiStudenteRequestDTO request) {
 
         sFacade.aggiungiStudente(request);
@@ -31,14 +31,14 @@ public class StudenteController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/admin/studente/elimina")
+    @PutMapping("/admin/studente/elimina/{id}")
     public ResponseEntity<Void> eliminaStudente(@PathVariable long id){
 
         sFacade.eliminaStudente(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/authorized/studente/getStudente/{id}")
+    @GetMapping("/docente/studente/getStudente/{id}")
     public ResponseEntity<StudenteResponseDTO> getStudente(@PathVariable long id){
 
         StudenteResponseDTO sDTO = sFacade.getStudente(id);

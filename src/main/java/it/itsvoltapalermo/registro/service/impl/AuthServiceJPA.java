@@ -3,7 +3,7 @@ package it.itsvoltapalermo.registro.service.impl;
 import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Utente;
 import it.itsvoltapalermo.registro.repository.UtenteRepository;
-import it.itsvoltapalermo.registro.service.def.UtenteService;
+import it.itsvoltapalermo.registro.service.def.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-public class UtenteServiceJPA implements UtenteService {
+public class AuthServiceJPA implements AuthService {
 
     private final UtenteRepository repo;
 

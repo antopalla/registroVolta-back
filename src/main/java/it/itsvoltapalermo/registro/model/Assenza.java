@@ -18,7 +18,7 @@ public class Assenza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private Time durata;
+    private double durata;
 
     @ManyToOne
     @JoinColumn(name = "id_studente", nullable = false)

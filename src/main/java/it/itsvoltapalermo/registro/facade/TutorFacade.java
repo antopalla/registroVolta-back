@@ -47,7 +47,7 @@ public class TutorFacade {
         return tutorMapper.toTutorReponseDTO(tutorService.getTutor(id));
     }
 
-    public List<TutorResponseDTO> getAllTutor() {
+    public List<TutorResponseDTO> getTutors() {
         return tutorMapper.toTutorResponseDTOList(tutorService.getTutors());
     }
 

@@ -25,7 +25,6 @@ public class LezioneFacade {
     private final ModuloService mService;
     private final CorsoService cService;
 
-
     public void aggiungiLezione(AggiungiLezioneRequestDTO request) {
         Lezione l = lMapper.fromAggiungiLezioneRequestDTO(request);
         l.setModulo(mService.getModulo(request.getIdModulo()));

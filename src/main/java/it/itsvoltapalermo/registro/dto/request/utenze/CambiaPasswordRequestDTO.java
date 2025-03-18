@@ -8,9 +8,6 @@ import lombok.Data;
 @Data
 public class CambiaPasswordRequestDTO {
 
-    @Min(value = 1, message = "L'id dell'utente non può essere minore di 1")
-    private long id;
-
     @NotNull(message = "Il campo vecchiaPassword non può essere vuoto")
     private String vecchiaPassword;
 

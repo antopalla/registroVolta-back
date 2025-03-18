@@ -9,6 +9,8 @@ import it.itsvoltapalermo.registro.service.def.LayoutService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -20,6 +22,7 @@ public class LayoutFacade {
 
     public void aggiungiLayout(AggiungiLayoutRequestDTO request){
         Layout l = lMapper.fromAggiungiLayoutRequestDTO(request);
+        l.setDataCreazione(LocalDateTime.now());
         lService.aggiungiLayout(l);
     }
 
@@ -40,7 +43,7 @@ public class LayoutFacade {
         return lMapper.toLayoutResponseDTO(lService.getLayout(id));
     }
 
-    public List<LayoutResponseDTO> getLayout(){
+    public List<LayoutResponseDTO> getLayouts(){
         return lMapper.toLayoutResponseDTOList(lService.getLayouts());
     }
 }

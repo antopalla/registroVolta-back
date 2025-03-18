@@ -4,12 +4,10 @@ import it.itsvoltapalermo.registro.dto.request.governance.AggiungiSedeRequestDTO
 import it.itsvoltapalermo.registro.dto.request.governance.ModificaSedeRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.governance.SedeResponseDTO;
 import it.itsvoltapalermo.registro.facade.SedeFacade;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,35 +17,35 @@ public class SedeController {
 
     private final SedeFacade sFacade;
 
-    @PostMapping("/admin/sede/registra")
-    public ResponseEntity<Void> aggiungiSede(AggiungiSedeRequestDTO request){
+    @PostMapping("/admin/sede/aggiungi")
+    public ResponseEntity<Void> aggiungiSede(@Valid @RequestBody AggiungiSedeRequestDTO request){
 
         sFacade.aggiungiSede(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/admin/sede/modifica")
-    public ResponseEntity<Void> modificaSede(ModificaSedeRequestDTO request){
+    public ResponseEntity<Void> modificaSede(@Valid @RequestBody ModificaSedeRequestDTO request){
 
         sFacade.modificaSede(request);
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/admin/sede/elimina")
-    public ResponseEntity<Void> eliminaSede(long id){
+    @PutMapping("/admin/sede/elimina/{id}")
+    public ResponseEntity<Void> eliminaSede(@PathVariable long id){
 
         sFacade.eliminaSede(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/admin/sede/getSede/{id}")
+    @GetMapping("/docente/sede/getSede/{id}")
     public ResponseEntity<SedeResponseDTO> getSede(@PathVariable long id){
 
         SedeResponseDTO sDTO = sFacade.getSede(id);
         return ResponseEntity.ok().body(sDTO);
     }
 
-    @GetMapping("/admin/sede/getAll")
+    @GetMapping("/docente/sede/getAll")
     public ResponseEntity<List<SedeResponseDTO>> getAllSedi(){
 
         List<SedeResponseDTO> sDTOList = sFacade.getAllSedi();

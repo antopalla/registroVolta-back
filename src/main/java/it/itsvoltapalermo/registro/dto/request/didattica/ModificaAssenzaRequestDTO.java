@@ -12,5 +12,5 @@ public class ModificaAssenzaRequestDTO {
     @NotNull(message = "Il campo id non può essere vuoto")
     private long id;
 
-    private String durata;
+    private double durata;
 }

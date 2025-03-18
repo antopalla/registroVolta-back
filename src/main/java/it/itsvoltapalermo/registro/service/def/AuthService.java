@@ -5,7 +5,7 @@ import it.itsvoltapalermo.registro.model.Utente;
 
 import java.util.List;
 
-public interface UtenteService {
+public interface AuthService {
 
     void modificaUtente(Utente u);
     Utente getUtente (long id);

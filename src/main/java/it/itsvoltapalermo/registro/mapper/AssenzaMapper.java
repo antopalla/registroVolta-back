@@ -16,12 +16,17 @@ public class AssenzaMapper {
         a.setDurata(aDTO.getDurata());
         return a;
     }
+
     public AssenzaResponseDTO toAssenzaResponseDTO(Assenza a){
         AssenzaResponseDTO aDto = new AssenzaResponseDTO();
         aDto.setId(a.getId());
         aDto.setDurata(a.getDurata());
+        aDto.setStudente(a.getStudente().getNome() + " " + a.getStudente().getCognome());
+        aDto.setLezione(a.getLezione().getData().toString());
+
         return aDto;
     }
+
     public List<AssenzaResponseDTO> toAssenzaResponseDTOList(List<Assenza> assenze){
         List<AssenzaResponseDTO> aDTOList = new ArrayList<>();
         for(Assenza a: assenze){

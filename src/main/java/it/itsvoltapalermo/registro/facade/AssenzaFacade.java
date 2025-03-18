@@ -6,6 +6,8 @@ import it.itsvoltapalermo.registro.dto.response.didattica.AssenzaResponseDTO;
 import it.itsvoltapalermo.registro.mapper.AssenzaMapper;
 import it.itsvoltapalermo.registro.model.Assenza;
 import it.itsvoltapalermo.registro.service.def.AssenzaService;
+import it.itsvoltapalermo.registro.service.def.LezioneService;
+import it.itsvoltapalermo.registro.service.def.StudenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +19,21 @@ public class AssenzaFacade {
 
     private final AssenzaService aService;
     private final AssenzaMapper aMapper;
+    private final LezioneService lService;
+    private final StudenteService sService;
 
     public void aggiungiAssenza(AggiungiAssenzaRequestDTO request) {
         Assenza a = aMapper.fromAggiungiAssenzaRequestDTO(request);
+        a.setLezione(lService.getLezione(request.getIdLezione()));
+        a.setStudente(sService.getStudente(request.getIdStudente()));
+
         aService.aggiungiAssenza(a);
     }
 
     public void modificaAssenza(ModificaAssenzaRequestDTO request) {
         Assenza a = aService.getAssenza(request.getId());
+        a.setDurata(request.getDurata());
+
         aService.modificaAssenza(a);
     }
 
@@ -36,7 +45,7 @@ public class AssenzaFacade {
         return aMapper.toAssenzaResponseDTO(aService.getAssenza(id));
     }
 
-    public List<AssenzaResponseDTO> getAssenze(long tutorId) {
+    public List<AssenzaResponseDTO> getAssenze() {
         return aMapper.toAssenzaResponseDTOList(aService.getAssenze());
     }
 }

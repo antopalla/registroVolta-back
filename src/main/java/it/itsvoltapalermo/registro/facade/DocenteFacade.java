@@ -19,9 +19,15 @@ public class DocenteFacade {
     private final DocenteService dService;
     private final DocenteMapper dMapper;
 
-    public void aggungiDocente(AggiungiDocenteRequestDTO request) {
+    public void aggiungiDocente(AggiungiDocenteRequestDTO request) {
         Docente d = dMapper.fromAggiungiDocenteRequestDTO(request);
         d.setRuolo(Ruolo.DOCENTE);
+        dService.aggiungiDocente(d);
+    }
+
+    public void aggiungiAdmin(AggiungiDocenteRequestDTO request) {
+        Docente d = dMapper.fromAggiungiDocenteRequestDTO(request);
+        d.setRuolo(Ruolo.ADMIN);
         dService.aggiungiDocente(d);
     }
 

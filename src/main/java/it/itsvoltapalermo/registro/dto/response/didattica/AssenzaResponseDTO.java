@@ -7,5 +7,7 @@ import java.sql.Time;
 @Data
 public class AssenzaResponseDTO {
     private long id;
-    private Time durata;
+    private double durata;
+    private String studente;
+    private String lezione;
 }

@@ -1,6 +1,5 @@
 package it.itsvoltapalermo.registro.dto.response.didattica;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.sql.Time;

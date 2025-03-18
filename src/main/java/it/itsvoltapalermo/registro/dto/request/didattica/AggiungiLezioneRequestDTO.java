@@ -3,7 +3,6 @@ package it.itsvoltapalermo.registro.dto.request.didattica;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -11,9 +10,9 @@ import java.time.LocalDate;
 @Data
 public class AggiungiLezioneRequestDTO {
 
-    private String data;
-    private String oraInizio;
-    private String oraFine;
+    private LocalDate data;
+    private Time oraInizio;
+    private Time oraFine;
 
     @NotBlank(message = "La descrizione non può essere vuota")
     private String descrizione;

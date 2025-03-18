@@ -1,6 +1,54 @@
 package it.itsvoltapalermo.registro.controller;
 
-// TODO LayoutController
-public class LayoutController {
+import it.itsvoltapalermo.registro.dto.request.didattica.AggiungiLayoutRequestDTO;
+import it.itsvoltapalermo.registro.dto.request.didattica.ModificaLayoutRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.didattica.LayoutResponseDTO;
+import it.itsvoltapalermo.registro.facade.LayoutFacade;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
+@RequiredArgsConstructor
+@RestController
+public class LayoutController {
+    
+    private final LayoutFacade lFacade;
+    
+    @PostMapping("/admin/layout/aggiungi")
+    public ResponseEntity<Void> aggiungiLayout(@Valid @RequestBody AggiungiLayoutRequestDTO request){
+        lFacade.aggiungiLayout(request);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping("/admin/layout/modifica")
+    public ResponseEntity<Void> modificaLayout(@Valid @RequestBody ModificaLayoutRequestDTO request){
+        lFacade.modificaLayout(request);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/admin/layout/elimina/{id}")
+    public ResponseEntity<Void> eliminaLayout(@PathVariable long id){
+        lFacade.eliminaLayout(id);
+
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/docente/layout/getLayout/{id}")
+    public ResponseEntity<LayoutResponseDTO> getLayout(@PathVariable long id){
+        LayoutResponseDTO lDTO = lFacade.getLayout(id);
+
+        return ResponseEntity.ok().body(lDTO);
+    }
+
+    @GetMapping("/docente/layout/getAll")
+    public ResponseEntity<List<LayoutResponseDTO>> getAllLayouts(){
+        List<LayoutResponseDTO> lDTOList = lFacade.getLayouts();
+
+        return ResponseEntity.ok().body(lDTOList);
+    }
 }

@@ -3,7 +3,7 @@ package it.itsvoltapalermo.registro.facade;
 import it.itsvoltapalermo.registro.dto.request.utenze.CambiaPasswordRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.LoginRequestDTO;
 import it.itsvoltapalermo.registro.model.Utente;
-import it.itsvoltapalermo.registro.service.def.UtenteService;
+import it.itsvoltapalermo.registro.service.def.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -12,17 +12,15 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 @RequiredArgsConstructor
-public class UtenteFacade {
+public class AuthFacade {
 
-    private final UtenteService uService;
+    private final AuthService uService;
 
     public Utente login(LoginRequestDTO requestDTO) {
         return uService.login(requestDTO.getUsername(), requestDTO.getPassword());
     }
 
-    public void cambiaPassword(CambiaPasswordRequestDTO requestDTO) {
-        Utente u = uService.getUtente(requestDTO.getId());
-
+    public void cambiaPassword(CambiaPasswordRequestDTO requestDTO, Utente u) {
         if (u.isDisattivato()) throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
 
         if (!u.getPassword().equals(requestDTO.getVecchiaPassword())) throw new ResponseStatusException(HttpStatus.FORBIDDEN);
