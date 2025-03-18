@@ -13,9 +13,9 @@ public class ModificaLezioneRequestDTO {
     @NotNull(message = "L'id non può essere nullo")
     private long id;
 
-    private LocalDate data;
-    private Time oraInizio;
-    private Time oraFine;
+    private String data;
+    private String oraInizio;
+    private String oraFine;
 
     @NotBlank(message = "La descrizione non può essere vuota")
     private String descrizione;

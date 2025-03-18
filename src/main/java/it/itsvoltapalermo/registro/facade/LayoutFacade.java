@@ -25,6 +25,10 @@ public class LayoutFacade {
 
     public void modificaLayout(ModificaLayoutRequestDTO request){
         Layout l = lService.getLayout(request.getId());
+        l.setNome(request.getNome());
+        l.setDescrizione(request.getDescrizione());
+        l.setPath(request.getPath());
+
         lService.modificaLayout(l);
     }
 

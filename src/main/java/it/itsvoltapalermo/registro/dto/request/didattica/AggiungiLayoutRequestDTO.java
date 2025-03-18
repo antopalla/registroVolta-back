@@ -17,6 +17,6 @@ public class AggiungiLayoutRequestDTO {
     @NotBlank(message = "Il path non può essere vuoto")
     private String path;
 
-    private LocalDateTime dataCreazione;
+    private String dataCreazione;
 
 }

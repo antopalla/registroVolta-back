@@ -7,5 +7,5 @@ import java.sql.Time;
 @Data
 public class AggiungiAssenzaRequestDTO {
 
-    private Time durata;
+    private String durata;
 }

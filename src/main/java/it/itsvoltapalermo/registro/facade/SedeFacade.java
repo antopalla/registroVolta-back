@@ -20,7 +20,6 @@ public class SedeFacade {
 
     public void aggiungiSede(AggiungiSedeRequestDTO request){
         Sede s = sMapper.fromAggiungiSedeRequestDTO(request);
-
         sService.aggiungiSede(s);
     }
 

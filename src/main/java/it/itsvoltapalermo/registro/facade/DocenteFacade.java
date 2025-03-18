@@ -5,6 +5,7 @@ import it.itsvoltapalermo.registro.dto.request.utenze.ModificaDocenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.DocenteResponseDTO;
 import it.itsvoltapalermo.registro.mapper.DocenteMapper;
 import it.itsvoltapalermo.registro.model.Docente;
+import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.service.def.DocenteService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,16 @@ public class DocenteFacade {
 
     public void aggungiDocente(AggiungiDocenteRequestDTO request) {
         Docente d = dMapper.fromAggiungiDocenteRequestDTO(request);
+        d.setRuolo(Ruolo.DOCENTE);
         dService.aggiungiDocente(d);
     }
 
     public void modificaDocente(ModificaDocenteRequestDTO request) {
         Docente d = dService.getDocente(request.getId());
+        d.setNome(request.getNome());
+        d.setCognome(request.getCognome());
+        d.setUsername(request.getUsername());
+        d.setDataNascita(request.getDataNascita());
         dService.modificaDocente(d);
     }
 

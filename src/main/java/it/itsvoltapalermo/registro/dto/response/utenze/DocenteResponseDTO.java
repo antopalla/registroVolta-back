@@ -15,7 +15,7 @@ public class DocenteResponseDTO {
     private String nome;
     private String cognome;
     private String username;
-    private LocalDate dataNascita;
-    private Ruolo ruolo;
+    private String dataNascita;
+    private String ruolo;
 
 }

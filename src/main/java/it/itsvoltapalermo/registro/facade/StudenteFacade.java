@@ -21,7 +21,6 @@ public class StudenteFacade {
     private final CorsoService cService;
 
     public void aggiungiStudente(AggiungiStudenteRequestDTO request){
-
         Studente s = sMapper.fromAggiungiStudenteRequestDTO(request);
         s.setCorso(cService.getCorso(request.getIdCorso()));
         sService.aggiungiStudente(s);
@@ -33,12 +32,10 @@ public class StudenteFacade {
         s.setNome(request.getNome());
         s.setCognome(request.getCognome());
         s.setCorso(cService.getCorso(request.getIdCorso()));
-
         sService.modificaStudente(s);
     }
 
     public void eliminaStudente(Long idStudente){
-
         sService.eliminaStudente(idStudente);
     }
 

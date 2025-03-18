@@ -19,6 +19,6 @@ public class ModificaLayoutRequestDTO {
     @NotBlank(message = "La path non può essere vuota")
     private String path;
 
-    private LocalDateTime dataCreazione;
+    private String dataCreazione;
 
 }
