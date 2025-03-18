@@ -30,10 +30,10 @@ public class TutorMapper {
     }
 
     public List<TutorResponseDTO> toTutorResponseDTOList(List<Tutor> tutor) {
-        List<TutorResponseDTO> tutorDTO = new ArrayList<>();
+        List<TutorResponseDTO> tDTOList = new ArrayList<>();
         for (Tutor t : tutor) {
-            tutorDTO.add(toTutorReponseDTO(t));
+            tDTOList.add(toTutorReponseDTO(t));
         }
-        return tutorDTO;
+        return tDTOList;
     }
 }

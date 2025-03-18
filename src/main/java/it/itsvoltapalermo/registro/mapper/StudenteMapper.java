@@ -31,11 +31,11 @@ public class StudenteMapper {
     }
 
     public List<StudenteResponseDTO> toStudenteResponseListDTO(List<Studente> studenti) {
-        List<StudenteResponseDTO> studentiListDTO = new ArrayList<>();
+        List<StudenteResponseDTO> sDTOList = new ArrayList<>();
         for(Studente s: studenti) {
-            studentiListDTO.add(toStudenteResponseDTO(s));
+            sDTOList.add(toStudenteResponseDTO(s));
         }
-        return studentiListDTO;
+        return sDTOList;
     }
 
 }

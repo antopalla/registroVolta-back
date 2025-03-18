@@ -28,10 +28,6 @@ public class LezioneFacade {
 
     public void aggiungiLezione(AggiungiLezioneRequestDTO request) {
         Lezione l = lMapper.fromAggiungiLezioneRequestDTO(request);
-        l.setDescrizione(request.getDescrizione());
-        l.setData(request.getData());
-        l.setOraInizio(request.getOraInizio());
-        l.setOraFine(request.getOraFine());
         l.setModulo(mService.getModulo(request.getIdModulo()));
         l.setCorso(cService.getCorso(request.getIdCorso()));
         l.setDocente(dService.getDocente(request.getIdDocente()));
@@ -41,10 +37,6 @@ public class LezioneFacade {
 
     public void modificaLezione(ModificaLezioneRequestDTO request) {
         Lezione l = lService.getLezione(request.getId());
-        l.setDescrizione(request.getDescrizione());
-        l.setData(request.getData());
-        l.setOraInizio(request.getOraInizio());
-        l.setOraFine(request.getOraFine());
         l.setModulo(mService.getModulo(request.getIdModulo()));
         l.setCorso(cService.getCorso(request.getIdCorso()));
         l.setDocente(dService.getDocente(request.getIdDocente()));

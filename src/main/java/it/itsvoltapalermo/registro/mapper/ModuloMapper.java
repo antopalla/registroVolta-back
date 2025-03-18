@@ -19,6 +19,7 @@ public class ModuloMapper {
 
     public ModuloResponseDTO toModuloResponseDTO (Modulo m){
         ModuloResponseDTO mDTO = new ModuloResponseDTO();
+        mDTO.setId(m.getId());
         mDTO.setDenominazione(m.getDenominazione());
         return mDTO;
     }

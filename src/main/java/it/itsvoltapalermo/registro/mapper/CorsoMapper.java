@@ -12,9 +12,7 @@ import java.util.List;
 public class CorsoMapper {
 
     public Corso fromAggiungiCorsoRequestDTO(AggiungiCorsoRequestDTO cDTO){
-
         Corso c = new Corso();
-
         c.setNome(cDTO.getNome());
         c.setDescrizione(cDTO.getDescrizione());
 
@@ -22,9 +20,8 @@ public class CorsoMapper {
     }
 
     public CorsoResponseDTO toCorsoResponseDTO(Corso c){
-
         CorsoResponseDTO cDto = new CorsoResponseDTO();
-
+        cDto.setId(c.getId());
         cDto.setNome(c.getNome());
         cDto.setDescrizione(c.getDescrizione());
 
@@ -32,11 +29,10 @@ public class CorsoMapper {
     }
 
     public List<CorsoResponseDTO> toCorsoResponseDTOList(List<Corso> corsi){
-        List<CorsoResponseDTO> corsoListDto = new ArrayList<>();
-
+        List<CorsoResponseDTO> cDTOList = new ArrayList<>();
         for (Corso c: corsi){
-            corsoListDto.add(toCorsoResponseDTO(c));
+            cDTOList.add(toCorsoResponseDTO(c));
         }
-        return corsoListDto;
+        return cDTOList;
     }
 }

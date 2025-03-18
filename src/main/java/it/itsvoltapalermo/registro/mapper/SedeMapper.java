@@ -35,10 +35,10 @@ public class SedeMapper {
     }
 
     public List<SedeResponseDTO> toSedeReponseDTOList(List<Sede> sedi){
-        List<SedeResponseDTO> sedeListDTO = new ArrayList<>();
+        List<SedeResponseDTO> sDTOList = new ArrayList<>();
         for (Sede s : sedi) {
-            sedeListDTO.add(toSedeResponseDTO(s));
+            sDTOList.add(toSedeResponseDTO(s));
         }
-        return sedeListDTO;
+        return sDTOList;
     }
 }

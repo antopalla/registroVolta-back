@@ -24,6 +24,7 @@ public class LezioneMapper {
 
     public LezioneResponseDTO toLezioneResponseDTO (Lezione l) {
         LezioneResponseDTO lDTO = new LezioneResponseDTO();
+        lDTO.setId(l.getId());
         lDTO.setDescrizione(l.getDescrizione());
         lDTO.setData(l.getData());
         lDTO.setOraInizio(l.getOraInizio());
@@ -32,10 +33,10 @@ public class LezioneMapper {
     }
 
     public List<LezioneResponseDTO> toLezioneResponseDTOList (List<Lezione> lezioni){
-        List<LezioneResponseDTO> lDTO = new ArrayList<>();
+        List<LezioneResponseDTO> lDTOList = new ArrayList<>();
         for (Lezione l : lezioni){
-            lDTO.add(toLezioneResponseDTO(l));
+            lDTOList.add(toLezioneResponseDTO(l));
         }
-        return lDTO;
+        return lDTOList;
     }
 }
