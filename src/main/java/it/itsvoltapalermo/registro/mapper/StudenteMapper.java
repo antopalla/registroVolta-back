@@ -26,6 +26,7 @@ public class StudenteMapper {
         sDTO.setId(s.getId());
         sDTO.setNome(s.getNome());
         sDTO.setCognome(s.getCognome());
+        sDTO.setCorso(s.getCorso().getNome());
 
         return sDTO;
     }

@@ -3,7 +3,6 @@ package it.itsvoltapalermo.registro.mapper;
 import it.itsvoltapalermo.registro.dto.request.didattica.AggiungiLayoutRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.didattica.LayoutResponseDTO;
 import it.itsvoltapalermo.registro.model.Layout;
-import it.itsvoltapalermo.registro.model.Lezione;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

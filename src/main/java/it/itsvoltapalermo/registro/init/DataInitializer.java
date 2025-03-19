@@ -4,7 +4,6 @@ import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Tutor;
 import it.itsvoltapalermo.registro.repository.UtenteRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;

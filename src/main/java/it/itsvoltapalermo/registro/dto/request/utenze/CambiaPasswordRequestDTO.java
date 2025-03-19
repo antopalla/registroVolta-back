@@ -1,6 +1,5 @@
 package it.itsvoltapalermo.registro.dto.request.utenze;
 
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;

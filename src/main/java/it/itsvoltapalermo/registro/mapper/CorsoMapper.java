@@ -3,13 +3,18 @@ package it.itsvoltapalermo.registro.mapper;
 import it.itsvoltapalermo.registro.dto.request.governance.AggiungiCorsoRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.governance.CorsoResponseDTO;
 import it.itsvoltapalermo.registro.model.Corso;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@RequiredArgsConstructor
 @Component
 public class CorsoMapper {
+
+    private final LezioneMapper lezioneMapper;
+    private final StudenteMapper studenteMapper;
 
     public Corso fromAggiungiCorsoRequestDTO(AggiungiCorsoRequestDTO cDTO){
         Corso c = new Corso();
@@ -24,6 +29,10 @@ public class CorsoMapper {
         cDto.setId(c.getId());
         cDto.setNome(c.getNome());
         cDto.setDescrizione(c.getDescrizione());
+        cDto.setSede(c.getSede().getNome());
+        cDto.setTutor(c.getTutor().getNome() + " " + c.getTutor().getCognome());
+        cDto.setLezioni(lezioneMapper.toLezioneResponseDTOList(c.getLezioni()));
+        cDto.setStudenti(studenteMapper.toStudenteResponseListDTO(c.getStudenti()));
 
         return cDto;
     }

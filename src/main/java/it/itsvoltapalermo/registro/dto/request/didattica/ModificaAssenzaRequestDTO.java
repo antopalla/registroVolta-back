@@ -1,10 +1,7 @@
 package it.itsvoltapalermo.registro.dto.request.didattica;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.sql.Time;
 
 @Data
 public class ModificaAssenzaRequestDTO {

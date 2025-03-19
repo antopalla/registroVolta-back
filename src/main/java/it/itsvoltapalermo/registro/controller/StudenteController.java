@@ -2,6 +2,7 @@ package it.itsvoltapalermo.registro.controller;
 
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiStudenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaStudenteRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.didattica.StudenteAssenzeResponseDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.facade.StudenteFacade;
 import jakarta.validation.Valid;
@@ -59,8 +60,8 @@ public class StudenteController {
     }
 
     @GetMapping("/tutor/studente/getStudentiByOreAssenza/{oreAssenza}")
-    public ResponseEntity<List<StudenteResponseDTO>> getStudentiByOreAssenza(@PathVariable int oreAssenza) {
-        List<StudenteResponseDTO> sDTOList = sFacade.getStudentiByOreAssenza(oreAssenza);
+    public ResponseEntity<List<StudenteAssenzeResponseDTO>> getStudentiByOreAssenza(@PathVariable int oreAssenza) {
+        List<StudenteAssenzeResponseDTO> sDTOList = sFacade.getStudentiByOreAssenza(oreAssenza);
         return ResponseEntity.ok(sDTOList);
     }
 
