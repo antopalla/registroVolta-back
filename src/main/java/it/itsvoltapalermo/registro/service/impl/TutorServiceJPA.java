@@ -31,7 +31,9 @@ public class TutorServiceJPA implements TutorService {
 
     @Override
     public void eliminaTutor(long id) {
-        repo.delete(getTutor(id));
+        Tutor t =  getTutor(id);
+        t.setDisattivato(true);
+        repo.save(t);
     }
 
     @Override
@@ -43,10 +45,5 @@ public class TutorServiceJPA implements TutorService {
     public List<Tutor> getTutors() {
         return repo.findAllByDisattivatoIsFalse();
 
-    }
-
-    @Override
-    public Tutor login(String username, String password) {
-        return repo.findByUsernameAndPasswordAndDisattivatoIsFalse(username, password).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "username", "Tutor non trovato"));
     }
 }

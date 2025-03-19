@@ -6,7 +6,7 @@
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
 VALUES (NULL, false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin');
 
--- Altri utenti (Docenti e Tutor)
+-- Altri utenti (Docenti, Tutor e Studenti)
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
 VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'mrossi');
 
@@ -28,6 +28,11 @@ VALUES ('1982-04-18', false, 0, 'Docente', 'Esposito', 'Paolo', '$2a$10$7CUjHOce
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
 VALUES ('1995-06-30', false, 1, 'Tutor', 'Conti', 'Laura', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'lconti');
 
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
+VALUES ('2004-06-30', false, 3, 'Studente', 'Conte', 'Virginia', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'vconte');
+
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
+VALUES ('2005-05-30', false, 3, 'Studente', 'Gialli', 'Isabella', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'igialli');
 
 
 -- ##########################################
@@ -88,7 +93,7 @@ VALUES (false, 7, 6, 'Corso di Economia', 'Microeconomia');
 -- ##########################################
 -- STUDENTE
 -- ##########################################
-
+/*
 INSERT INTO studente (disattivato, id_corso, cognome, nome)
 VALUES (false, 1, 'Rossi', 'Luigi');
 
@@ -109,7 +114,7 @@ VALUES (false, 6, 'Rossi', 'Stefano');
 
 INSERT INTO studente (disattivato, id_corso, cognome, nome)
 VALUES (false, 7, 'De Luca', 'Silvia');
-
+*/
 
 
 -- ##########################################

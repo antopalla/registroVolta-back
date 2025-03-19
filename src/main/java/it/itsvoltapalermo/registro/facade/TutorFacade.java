@@ -42,6 +42,9 @@ public class TutorFacade {
         t.setUsername(request.getUsername());
         t.setNome(request.getNome());
         t.setCognome(request.getCognome());
+        t.setCodiceFiscale(request.getCodiceFiscale());
+        t.setDataNascita(request.getDataNascita());
+
         tutorService.modificaTutor(t);
     }
 

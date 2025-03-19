@@ -18,13 +18,9 @@ import java.util.List;
 @DiscriminatorValue("Docente")
 public class Docente extends Utente {
 
-    private LocalDate dataNascita;
-
     @OneToMany(mappedBy = "docente", cascade = CascadeType.MERGE)
     private List<Lezione> lezioni;
 
     @OneToMany(mappedBy = "docente", cascade = CascadeType.MERGE)
     private List<Modulo> moduli;
-
-
 }

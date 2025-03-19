@@ -16,6 +16,8 @@ import java.util.List;
 @RestController
 public class StudenteController {
 
+    //TODO creare Entity DiarioBordo
+
     private final StudenteFacade sFacade;
 
     @PostMapping("/admin/studente/aggiungi")
@@ -25,7 +27,8 @@ public class StudenteController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/admin/studente/modifica")
+    //TODO modificare la rotta in modo che uno studente possa modificare solo sè stesso (passandogli l'upath)
+    @PostMapping("/studente/studente/modifica")
     public ResponseEntity<Void> modificaStudente(@Valid @RequestBody ModificaStudenteRequestDTO request) {
 
         sFacade.modificaStudente(request);

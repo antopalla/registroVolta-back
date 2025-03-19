@@ -15,5 +15,4 @@ public interface StudenteService {
 
     List<Studente> getStudentiByCorso (long idCorso);
     List<Studente> getStudentiByOreAssenza (int oreAssenza);
-
 }

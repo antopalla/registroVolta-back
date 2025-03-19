@@ -12,6 +12,4 @@ public interface TutorService {
     Tutor getTutor (long id);
     List<Tutor> getTutors();
 
-    Tutor login(String username, String password);
-
 }

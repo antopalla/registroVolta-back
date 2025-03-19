@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,6 +33,12 @@ public abstract class Utente implements UserDetails {
 
     private Ruolo ruolo;
     private boolean disattivato;
+
+    private LocalDate dataNascita;
+
+    //TODO rimettere unique a true e nullable a false
+    @Column(unique = false, nullable = true)
+    private String codiceFiscale;
 
     // Implementazione dei metodi di UserDetails
     @Override

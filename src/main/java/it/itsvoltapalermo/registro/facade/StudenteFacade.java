@@ -7,11 +7,13 @@ import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.mapper.AssenzaMapper;
 import it.itsvoltapalermo.registro.mapper.StudenteMapper;
 import it.itsvoltapalermo.registro.model.Assenza;
+import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Studente;
 import it.itsvoltapalermo.registro.service.def.AssenzaService;
 import it.itsvoltapalermo.registro.service.def.CorsoService;
 import it.itsvoltapalermo.registro.service.def.StudenteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,10 +28,14 @@ public class StudenteFacade {
     private final CorsoService cService;
     private final AssenzaService aService;
     private final AssenzaMapper aMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public void aggiungiStudente(AggiungiStudenteRequestDTO request){
         Studente s = sMapper.fromAggiungiStudenteRequestDTO(request);
         s.setCorso(cService.getCorso(request.getIdCorso()));
+        s.setRuolo(Ruolo.STUDENTE);
+        s.setPassword(passwordEncoder.encode(request.getPassword()));
+
         sService.aggiungiStudente(s);
     }
 
@@ -39,6 +45,10 @@ public class StudenteFacade {
         s.setNome(request.getNome());
         s.setCognome(request.getCognome());
         s.setCorso(cService.getCorso(request.getIdCorso()));
+        s.setCodiceFiscale(request.getCodiceFiscale());
+        s.setDataNascita(request.getDataNascita());
+        s.setUsername(request.getUsername());
+
         sService.modificaStudente(s);
     }
 

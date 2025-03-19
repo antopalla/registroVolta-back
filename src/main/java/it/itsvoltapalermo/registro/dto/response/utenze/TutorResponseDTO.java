@@ -1,15 +1,11 @@
 package it.itsvoltapalermo.registro.dto.response.utenze;
 
+import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiUtenteRequestDTO;
 import lombok.Data;
 
 @Data
-public class TutorResponseDTO {
+public class TutorResponseDTO extends UtenteResponseDTO {
 
-    private long id;
-    private String nome;
-    private String cognome;
-    private String username;
-    private String ruolo;
 
     //TODO decidere come gestire le liste
 

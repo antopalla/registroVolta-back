@@ -15,7 +15,8 @@ public class TutorMapper {
         t.setNome(tDTO.getNome());
         t.setCognome(tDTO.getCognome());
         t.setUsername(tDTO.getUsername());
-        t.setPassword(tDTO.getPassword());
+        tDTO.setDataNascita(t.getDataNascita());
+        tDTO.setCodiceFiscale(t.getCodiceFiscale());
         return t;
     }
 
@@ -25,6 +26,8 @@ public class TutorMapper {
         tDTO.setNome(t.getNome());
         tDTO.setCognome(t.getCognome());
         tDTO.setUsername(t.getUsername());
+        tDTO.setDataNascita(t.getDataNascita().toString());
+        tDTO.setCodiceFiscale(t.getCodiceFiscale());
         tDTO.setRuolo(t.getRuolo().toString());
         return tDTO;
     }

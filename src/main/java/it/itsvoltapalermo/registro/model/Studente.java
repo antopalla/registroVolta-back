@@ -12,14 +12,8 @@ import java.util.List;
 
 @Data
 @Entity
-public class Studente {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    private String nome;
-    private String cognome;
+@DiscriminatorValue("Studente")
+public class Studente extends Utente{
 
     @OneToMany(mappedBy = "studente", cascade = CascadeType.MERGE)
     private List<Assenza> assenze;
@@ -28,8 +22,8 @@ public class Studente {
     private List<SchedaValutazione> schedeValutazione;
 
     @ManyToOne
-    @JoinColumn(name = "id_corso", nullable = false)
+    //TODO rimettere nullable a false
+    @JoinColumn(name = "id_corso", nullable = true)
     private Corso corso;
 
-    private boolean disattivato;
 }

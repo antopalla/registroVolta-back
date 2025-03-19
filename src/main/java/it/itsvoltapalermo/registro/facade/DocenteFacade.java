@@ -39,10 +39,12 @@ public class DocenteFacade {
 
     public void modificaDocente(ModificaDocenteRequestDTO request) {
         Docente d = dService.getDocente(request.getId());
+        d.setUsername(request.getUsername());
         d.setNome(request.getNome());
         d.setCognome(request.getCognome());
-        d.setUsername(request.getUsername());
         d.setDataNascita(request.getDataNascita());
+        d.setCodiceFiscale(request.getCodiceFiscale());
+
         dService.modificaDocente(d);
     }
 
