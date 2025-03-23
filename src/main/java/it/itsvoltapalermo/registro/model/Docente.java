@@ -1,5 +1,6 @@
 package it.itsvoltapalermo.registro.model;
 
+import it.itsvoltapalermo.registro.converters.ImageEncryptorConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,6 +20,10 @@ import java.util.List;
 public class Docente extends Utente {
 
     private LocalDate dataNascita;
+
+    @Lob
+    @Convert(converter = ImageEncryptorConverter.class)
+    private byte[] immagineFirma;
 
     @OneToMany(mappedBy = "docente", cascade = CascadeType.MERGE)
     private List<Lezione> lezioni;

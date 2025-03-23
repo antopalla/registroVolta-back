@@ -10,6 +10,7 @@ public class DocenteResponseDTO {
     private String cognome;
     private String username;
     private String dataNascita;
-    private String ruolo;
+
+    //TODO decidere come gestire le liste
 
 }

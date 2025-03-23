@@ -14,9 +14,4 @@ public class ModificaLayoutRequestDTO {
     @NotBlank(message = "La descrizione non può essere vuota")
     private String descrizione;
 
-    @NotBlank(message = "La path non può essere vuota")
-    private String path;
-
-    private String dataCreazione;
-
 }

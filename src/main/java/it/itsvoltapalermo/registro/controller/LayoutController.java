@@ -6,6 +6,9 @@ import it.itsvoltapalermo.registro.dto.response.didattica.LayoutResponseDTO;
 import it.itsvoltapalermo.registro.facade.LayoutFacade;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,11 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class LayoutController {
-    
+
     private final LayoutFacade lFacade;
-    
-    @PostMapping("/admin/layout/aggiungi")
-    public ResponseEntity<Void> aggiungiLayout(@Valid @RequestBody AggiungiLayoutRequestDTO request){
+
+    @PostMapping(value = "/admin/layout/aggiungi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> aggiungiLayout(@Valid @ModelAttribute AggiungiLayoutRequestDTO request){
         lFacade.aggiungiLayout(request);
 
         return ResponseEntity.ok().build();
@@ -50,5 +53,13 @@ public class LayoutController {
         List<LayoutResponseDTO> lDTOList = lFacade.getLayouts();
 
         return ResponseEntity.ok().body(lDTOList);
+    }
+
+    @GetMapping("/docente/layout/download/{id}")
+    public ResponseEntity<ByteArrayResource> downloadLayout(@PathVariable long id) {
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=layout.xlsx")
+                    .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
+                    .body(lFacade.downloadLayout(id));
     }
 }

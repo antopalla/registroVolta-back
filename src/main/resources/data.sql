@@ -11,7 +11,7 @@ INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, passw
 VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'mrossi');
 
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
-VALUES ('1975-05-15', false, 0, 'Docente', 'Bianchi', 'Luca', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'lbianchi');
+    VALUES ('1975-05-15', false, 0, 'Docente', 'Bianchi', 'Luca', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'lbianchi');
 
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
 VALUES ('1990-09-10', false, 1, 'Tutor', 'Verdi', 'Claudio', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'cverdi');
@@ -139,34 +139,6 @@ INSERT INTO modulo (disattivato, id_corso, id_docente, denominazione)
 VALUES (false, 7, 2, 'Modulo G');
 
 
-
--- ##########################################
--- LAYOUT
--- ##########################################
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-01 10:00:00', 'Layout A description', 'Layout A', '/path/to/layoutA');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-02 11:00:00', 'Layout B description', 'Layout B', '/path/to/layoutB');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-03 12:00:00', 'Layout C description', 'Layout C', '/path/to/layoutC');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-04 13:00:00', 'Layout D description', 'Layout D', '/path/to/layoutD');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-05 14:00:00', 'Layout E description', 'Layout E', '/path/to/layoutE');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-06 15:00:00', 'Layout F description', 'Layout F', '/path/to/layoutF');
-
-INSERT INTO layout (disattivato, data_creazione, descrizione, nome, path)
-VALUES (false, '2023-01-07 16:00:00', 'Layout G description', 'Layout G', '/path/to/layoutG');
-
-
-
 -- ##########################################
 -- LEZIONE
 -- ##########################################
@@ -192,84 +164,6 @@ VALUES ('2023-02-06', false, '17:00:00', '15:00:00', 6, 7, 6, 'Lezione 6: Labora
 
 INSERT INTO lezione (data, disattivato, ora_fine, ora_inizio, id_corso, id_docente, id_modulo, descrizione)
 VALUES ('2023-02-07', false, '18:00:00', '16:00:00', 7, 7, 7, 'Lezione 7: Conclusione');
-
-
-
--- ##########################################
--- SCHEDA_VALUTAZIONE
--- ##########################################
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           8, 7, 9, 8, 7, 8, 9, false, 8, 7, 8, 9, 8, 7, 8, 9, 2, 1, 1, 1, 'Ottimo', '/firma/1.png', '/scheda/1.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           7, 8, 7, 8, 8, 7, 8, false, 7, 8, 7, 8, 7, 8, 7, 8, 3, 2, 2, 2, 'Buono', '/firma/2.png', '/scheda/2.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           9, 9, 8, 9, 9, 8, 9, false, 9, 8, 9, 8, 9, 8, 9, 8, 5, 3, 3, 3, 'Eccellente', '/firma/3.png', '/scheda/3.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           6, 7, 6, 7, 6, 7, 6, false, 6, 7, 6, 7, 6, 7, 6, 7, 7, 4, 4, 4, 'Soddisfacente', '/firma/4.png', '/scheda/4.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           8, 8, 8, 8, 8, 8, 8, false, 8, 8, 8, 8, 8, 8, 8, 8, 3, 5, 5, 5, 'Molto Buono', '/firma/5.png', '/scheda/5.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           7, 7, 7, 7, 7, 7, 7, false, 7, 7, 7, 7, 7, 7, 7, 7, 5, 6, 6, 6, 'Buono', '/firma/6.png', '/scheda/6.pdf'
-       );
-
-INSERT INTO scheda_valutazione (
-    capacita_collegamento_organizzazione, collaborazione_colleghi, collaborazione_docenti, collaborazione_tutor,
-    comunicazione, conoscenza_concetti_tecnici, conoscenza_concetti_teorici, disattivato, impegno, integrazione_gruppo,
-    livello_preparazione_ingresso, livello_preparazione_uscita, motivazione, rispetto_regole, socializzazione,
-    uso_linguaggio_terminologia, id_docente, id_layout, id_modulo, id_studente, giudizio_complessivo, path_firma, path_scheda
-)
-VALUES (
-           9, 8, 9, 8, 9, 8, 9, false, 9, 8, 9, 8, 9, 8, 9, 8, 7, 7, 7, 7, 'Eccellente', '/firma/7.png', '/scheda/7.pdf'
-       );
-
-
 
 
 -- ##########################################
