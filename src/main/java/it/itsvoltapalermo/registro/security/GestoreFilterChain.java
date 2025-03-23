@@ -52,7 +52,7 @@ public class GestoreFilterChain {
                 .headers(c -> c.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 // Configurazione delle regole di autorizzazione per le richieste HTTP
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("studente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.STUDENTE.toString())
+                        .requestMatchers("studente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.TUTOR.toString(), Ruolo.DOCENTE.toString(), Ruolo.STUDENTE.toString())
                         // Solo gli utenti con ruolo DOCENTE possono accedere agli endpoint "/docente/**"
                         .requestMatchers("/docente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.TUTOR.toString(), Ruolo.DOCENTE.toString())
                         // Gli utenti con ruolo TUTOR o DOCENTE possono accedere agli endpoint "/tutor/**"

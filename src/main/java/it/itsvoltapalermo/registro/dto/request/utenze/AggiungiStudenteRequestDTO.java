@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class AggiungiStudenteRequestDTO extends AggiungiUtenteRequestDTO {
 
-    @NotNull(message = "Lo studente deve apartenere a un corso")
+    @NotNull(message = "Lo studente deve appartenere a un corso")
     private long idCorso;
 
 }

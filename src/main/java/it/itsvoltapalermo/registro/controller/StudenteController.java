@@ -6,9 +6,12 @@ import it.itsvoltapalermo.registro.dto.response.didattica.StudenteAssenzeRespons
 import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.UsernamePasswordResponseDTO;
 import it.itsvoltapalermo.registro.facade.StudenteFacade;
+import it.itsvoltapalermo.registro.model.Utente;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,8 +32,9 @@ public class StudenteController {
 
     //TODO modificare la rotta in modo che uno studente possa modificare solo sè stesso (passandogli l'upath)
     @PostMapping("/studente/studente/modifica")
-    public ResponseEntity<Void> modificaStudente(@Valid @RequestBody ModificaStudenteRequestDTO request) {
-        facade.modificaStudente(request);
+    public ResponseEntity<Void> modificaStudente(@Valid @RequestBody ModificaStudenteRequestDTO request, UsernamePasswordAuthenticationToken upat) {
+        Utente u = (Utente)upat.getPrincipal();
+        facade.modificaStudente(request, u);
         return ResponseEntity.ok().build();
     }
 
@@ -40,9 +44,10 @@ public class StudenteController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/docente/studente/getStudente/{id}")
-    public ResponseEntity<StudenteResponseDTO> getStudente(@PathVariable long id){
-        StudenteResponseDTO sDTO = facade.getStudente(id);
+    @GetMapping("/studente/studente/getStudente/{id}")
+    public ResponseEntity<StudenteResponseDTO> getStudente(@PathVariable long id, UsernamePasswordAuthenticationToken upat){
+        Utente u = (Utente)upat.getPrincipal();
+        StudenteResponseDTO sDTO = facade.getStudente(id, u);
         return ResponseEntity.ok(sDTO);
     }
 
