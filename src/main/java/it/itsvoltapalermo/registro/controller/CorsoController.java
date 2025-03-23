@@ -15,41 +15,35 @@ import java.util.List;
 @RestController
 public class CorsoController {
 
-    private final CorsoFacade cFacade;
+    private final CorsoFacade facade;
 
     @PostMapping("/admin/corso/aggiungi")
     public ResponseEntity<Void> aggiungiCorso(@Valid @RequestBody AggiungiCorsoRequestDTO request){
-        cFacade.aggiungiCorso(request);
-
+        facade.aggiungiCorso(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/admin/corso/modifica")
     public ResponseEntity<Void> modificaCorso(@Valid @RequestBody ModificaCorsoRequestDTO request){
-        cFacade.modificaCorso(request);
-
+        facade.modificaCorso(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/admin/corso/elimina/{id}")
     public ResponseEntity<Void> eliminaCorso(@PathVariable long id){
-        cFacade.eliminaCorso(id);
-
+        facade.eliminaCorso(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/corso/getCorso/{id}")
     public ResponseEntity<CorsoResponseDTO> getCorso(@PathVariable long id){
-        CorsoResponseDTO cDTO = cFacade.getCorso(id);
-
+        CorsoResponseDTO cDTO = facade.getCorso(id);
         return ResponseEntity.ok().body(cDTO);
     }
 
     @GetMapping("/docente/corso/getAll")
     public ResponseEntity<List<CorsoResponseDTO>> getAllCorsi(){
-        List<CorsoResponseDTO> cDTOList = cFacade.getCorsi();
-
+        List<CorsoResponseDTO> cDTOList = facade.getCorsi();
         return ResponseEntity.ok().body(cDTOList);
     }
-
 }

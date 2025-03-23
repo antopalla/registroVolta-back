@@ -49,4 +49,5 @@ public class DocenteServiceJPA implements DocenteService {
     public List<Docente> getDocenti() {
         return repo.findAllByDisattivatoIsFalse();
     }
+
 }

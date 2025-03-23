@@ -15,41 +15,35 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LezioneController {
     
-    private final LezioneFacade lFacade;
+    private final LezioneFacade facade;
 
     @PostMapping("/docente/lezione/aggiungi")
     public ResponseEntity<Void> aggiungiLezione(@Valid @RequestBody AggiungiLezioneRequestDTO request) {
-        lFacade.aggiungiLezione(request);
-
+        facade.aggiungiLezione(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/docente/lezione/modifica")
     public ResponseEntity<Void> modificaLezione(@Valid @RequestBody ModificaLezioneRequestDTO request) {
-        lFacade.modificaLezione(request);
-
+        facade.modificaLezione(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/docente/lezione/elimina/{id}")
     public ResponseEntity<Void> eliminaLezione(@PathVariable long id) {
-        lFacade.eliminaLezione(id);
-
+        facade.eliminaLezione(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/lezione/getLezione/{id}")
     public ResponseEntity<LezioneResponseDTO> getLezione(@PathVariable long id) {
-        LezioneResponseDTO lDTO = lFacade.getLezione(id);
-
+        LezioneResponseDTO lDTO = facade.getLezione(id);
         return ResponseEntity.ok().body(lDTO);
     }
 
     @GetMapping("/tutor/lezione/getAll")
     public ResponseEntity<List<LezioneResponseDTO>> getAllLezioni() {
-        List<LezioneResponseDTO> lDTOList = lFacade.getAllLezioni();
-
+        List<LezioneResponseDTO> lDTOList = facade.getAllLezioni();
         return ResponseEntity.ok().body(lDTOList);
     }
-
 }

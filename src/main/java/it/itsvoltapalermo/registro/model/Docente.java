@@ -18,18 +18,15 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("Docente")
 public class Docente extends Utente {
-
     private LocalDate dataNascita;
 
     @Lob
     @Convert(converter = ImageEncryptorConverter.class)
     private byte[] immagineFirma;
-
+  
     @OneToMany(mappedBy = "docente", cascade = CascadeType.MERGE)
     private List<Lezione> lezioni;
 
     @OneToMany(mappedBy = "docente", cascade = CascadeType.MERGE)
     private List<Modulo> moduli;
-
-
 }

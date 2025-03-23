@@ -5,15 +5,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class AggiungiStudenteRequestDTO {
+public class AggiungiStudenteRequestDTO extends AggiungiUtenteRequestDTO {
 
-    @NotBlank(message = "Il nome non può essere vuoto")
-    private String nome;
-
-    @NotBlank(message = "Il nome non può essere vuoto")
-    private String cognome;
-
-    @NotNull(message = "L'id del corso non può essere nullo")
+    @NotNull(message = "Lo studente deve appartenere a un corso")
     private long idCorso;
+
 }
 

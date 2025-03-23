@@ -12,4 +12,5 @@ public interface DocenteRepository extends JpaRepository<Docente, Long> {
     Optional<Docente> findByUsernameAndDisattivatoIsFalse(String username);
 
     List<Docente> findAllByDisattivatoIsFalse();
+
 }

@@ -3,6 +3,7 @@ package it.itsvoltapalermo.registro.controller;
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiDocenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaDocenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.DocenteResponseDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UsernamePasswordResponseDTO;
 import it.itsvoltapalermo.registro.facade.DocenteFacade;
 import it.itsvoltapalermo.registro.model.Utente;
 import jakarta.validation.Valid;
@@ -24,20 +25,15 @@ public class DocenteController {
     private final DocenteFacade facade;
 
     @PostMapping("/admin/docente/aggiungiDocente")
-    public ResponseEntity<Void> aggiungiDocente (@Valid @RequestBody AggiungiDocenteRequestDTO request) {
-        facade.aggiungiDocente(request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UsernamePasswordResponseDTO> aggiungiDocente (@Valid @RequestBody AggiungiDocenteRequestDTO request) {
+        UsernamePasswordResponseDTO dDTO = facade.aggiungiDocente(request);
+        return ResponseEntity.ok(dDTO);
     }
 
-    @PostMapping("/admin/docente/aggiungiAdmin")
-    public ResponseEntity<Void> aggiungiAdmin (@Valid @RequestBody AggiungiDocenteRequestDTO request) {
-        facade.aggiungiAdmin(request);
-        return ResponseEntity.ok().build();
-    }
-
-    @PostMapping("/admin/docente/modificaDocente")
-    public ResponseEntity<Void> modificaDocente (@Valid @RequestBody ModificaDocenteRequestDTO request) {
-        facade.modificaDocente(request);
+    @PostMapping("/docente/docente/modificaDocente")
+    public ResponseEntity<Void> modificaDocente (@Valid @RequestBody ModificaDocenteRequestDTO request, UsernamePasswordAuthenticationToken upat) {
+        Utente u = (Utente)upat.getPrincipal();
+        facade.modificaDocente(request, u);
         return ResponseEntity.ok().build();
     }
 

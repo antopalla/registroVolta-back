@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @Service
 public class StudenteServiceJPA implements StudenteService {
@@ -18,13 +19,13 @@ public class StudenteServiceJPA implements StudenteService {
 
     @Override
     public void aggiungiStudente(Studente s) {
-        if(s.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
+        if (s.getId() != 0) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
     @Override
     public void modificaStudente(Studente s) {
-        if(s.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
+        if (s.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(s);
     }
 
@@ -40,6 +41,7 @@ public class StudenteServiceJPA implements StudenteService {
         return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Studente non trovato"));
 
     }
+
     @Override
     public List<Studente> getStudenti() {
         return repo.findAllByDisattivatoIsFalse();
@@ -50,8 +52,10 @@ public class StudenteServiceJPA implements StudenteService {
         return repo.findAllByCorso_IdAndDisattivatoIsFalse(idCorso);
 
     }
+
     @Override
     public List<Studente> getStudentiByOreAssenza(int oreAssenza) {
         return repo.findStudentiConAssenzeSuperate(oreAssenza);
     }
+
 }

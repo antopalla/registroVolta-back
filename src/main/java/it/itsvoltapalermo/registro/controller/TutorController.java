@@ -3,10 +3,13 @@ package it.itsvoltapalermo.registro.controller;
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiTutorRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaTutorRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.TutorResponseDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UsernamePasswordResponseDTO;
 import it.itsvoltapalermo.registro.facade.TutorFacade;
+import it.itsvoltapalermo.registro.model.Utente;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +21,9 @@ public class TutorController {
     private final TutorFacade facade;
 
     @PostMapping("/admin/tutor/aggiungiTutor")
-    public ResponseEntity<Void> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
-        facade.aggiungiTutor(request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UsernamePasswordResponseDTO> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
+        UsernamePasswordResponseDTO tDTO = facade.aggiungiTutor(request);
+        return ResponseEntity.ok(tDTO);
     }
 
     @PostMapping("/admin/tutor/aggiungiAdmin")
@@ -29,9 +32,10 @@ public class TutorController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/admin/tutor/modificaTutor")
-    public ResponseEntity<Void> modificaTutor (@Valid @RequestBody ModificaTutorRequestDTO request) {
-        facade.modificaTutor(request);
+    @PostMapping("/tutor/tutor/modificaTutor")
+    public ResponseEntity<Void> modificaTutor (@Valid @RequestBody ModificaTutorRequestDTO request, UsernamePasswordAuthenticationToken upat) {
+        Utente u = (Utente)upat.getPrincipal();
+        facade.modificaTutor(request, u);
         return ResponseEntity.ok().build();
     }
 

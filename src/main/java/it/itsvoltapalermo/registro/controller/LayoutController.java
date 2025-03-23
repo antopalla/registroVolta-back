@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class LayoutController {
-
     private final LayoutFacade lFacade;
 
     @PostMapping(value = "/admin/layout/aggiungi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
@@ -29,29 +28,25 @@ public class LayoutController {
 
     @PostMapping("/admin/layout/modifica")
     public ResponseEntity<Void> modificaLayout(@Valid @RequestBody ModificaLayoutRequestDTO request){
-        lFacade.modificaLayout(request);
-
+        facade.modificaLayout(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/admin/layout/elimina/{id}")
     public ResponseEntity<Void> eliminaLayout(@PathVariable long id){
-        lFacade.eliminaLayout(id);
-
+        facade.eliminaLayout(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/layout/getLayout/{id}")
     public ResponseEntity<LayoutResponseDTO> getLayout(@PathVariable long id){
-        LayoutResponseDTO lDTO = lFacade.getLayout(id);
-
+        LayoutResponseDTO lDTO = facade.getLayout(id);
         return ResponseEntity.ok().body(lDTO);
     }
 
     @GetMapping("/docente/layout/getAll")
     public ResponseEntity<List<LayoutResponseDTO>> getAllLayouts(){
-        List<LayoutResponseDTO> lDTOList = lFacade.getLayouts();
-
+        List<LayoutResponseDTO> lDTOList = facade.getLayouts();
         return ResponseEntity.ok().body(lDTOList);
     }
 

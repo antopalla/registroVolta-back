@@ -15,40 +15,35 @@ import java.util.List;
 @RestController
 public class SedeController {
 
-    private final SedeFacade sFacade;
+    private final SedeFacade facade;
 
     @PostMapping("/admin/sede/aggiungi")
     public ResponseEntity<Void> aggiungiSede(@Valid @RequestBody AggiungiSedeRequestDTO request){
-
-        sFacade.aggiungiSede(request);
+        facade.aggiungiSede(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/admin/sede/modifica")
     public ResponseEntity<Void> modificaSede(@Valid @RequestBody ModificaSedeRequestDTO request){
-
-        sFacade.modificaSede(request);
+        facade.modificaSede(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/admin/sede/elimina/{id}")
     public ResponseEntity<Void> eliminaSede(@PathVariable long id){
-
-        sFacade.eliminaSede(id);
+        facade.eliminaSede(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/sede/getSede/{id}")
     public ResponseEntity<SedeResponseDTO> getSede(@PathVariable long id){
-
-        SedeResponseDTO sDTO = sFacade.getSede(id);
+        SedeResponseDTO sDTO = facade.getSede(id);
         return ResponseEntity.ok().body(sDTO);
     }
 
     @GetMapping("/docente/sede/getAll")
     public ResponseEntity<List<SedeResponseDTO>> getAllSedi(){
-
-        List<SedeResponseDTO> sDTOList = sFacade.getAllSedi();
+        List<SedeResponseDTO> sDTOList = facade.getAllSedi();
         return ResponseEntity.ok().body(sDTOList);
     }
 }
