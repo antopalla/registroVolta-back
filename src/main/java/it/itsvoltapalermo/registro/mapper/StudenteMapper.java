@@ -16,7 +16,6 @@ public class StudenteMapper {
         Studente s = new Studente();
         s.setNome(sDTO.getNome());
         s.setCognome(sDTO.getCognome());
-        s.setUsername(sDTO.getUsername());
         s.setDataNascita(sDTO.getDataNascita());
         s.setCodiceFiscale(sDTO.getCodiceFiscale());
         return s;

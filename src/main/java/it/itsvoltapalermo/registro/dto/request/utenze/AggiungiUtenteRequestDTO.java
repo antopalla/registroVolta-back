@@ -17,13 +17,6 @@ public class AggiungiUtenteRequestDTO {
     @NotBlank(message = "Il campo nome non può essere vuoto")
     private String cognome;
 
-    @NotBlank(message = "Il campo username non può essere vuoto")
-    private String username;
-
-    @NotNull(message = "Il campo password non può essere vuoto")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$", message = "La password deve contenere almeno 8 caratteri, di cui almeno una lettera maiuscola, una lettera minuscola e un numero")
-    private String password;
-
     @Past(message = "Non puoi essere nato nel futuro")
     private LocalDate dataNascita;
 

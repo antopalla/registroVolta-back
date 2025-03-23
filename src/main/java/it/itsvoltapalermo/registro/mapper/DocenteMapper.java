@@ -15,7 +15,6 @@ public class DocenteMapper {
         Docente d = new Docente();
         d.setNome(dDTO.getNome());
         d.setCognome(dDTO.getCognome());
-        d.setUsername(dDTO.getUsername());
         d.setDataNascita(dDTO.getDataNascita());
         d.setCodiceFiscale(dDTO.getCodiceFiscale());
 

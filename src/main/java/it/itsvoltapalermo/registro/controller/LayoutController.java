@@ -15,40 +15,35 @@ import java.util.List;
 @RestController
 public class LayoutController {
     
-    private final LayoutFacade lFacade;
+    private final LayoutFacade facade;
     
     @PostMapping("/admin/layout/aggiungi")
     public ResponseEntity<Void> aggiungiLayout(@Valid @RequestBody AggiungiLayoutRequestDTO request){
-        lFacade.aggiungiLayout(request);
-
+        facade.aggiungiLayout(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/admin/layout/modifica")
     public ResponseEntity<Void> modificaLayout(@Valid @RequestBody ModificaLayoutRequestDTO request){
-        lFacade.modificaLayout(request);
-
+        facade.modificaLayout(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/admin/layout/elimina/{id}")
     public ResponseEntity<Void> eliminaLayout(@PathVariable long id){
-        lFacade.eliminaLayout(id);
-
+        facade.eliminaLayout(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/layout/getLayout/{id}")
     public ResponseEntity<LayoutResponseDTO> getLayout(@PathVariable long id){
-        LayoutResponseDTO lDTO = lFacade.getLayout(id);
-
+        LayoutResponseDTO lDTO = facade.getLayout(id);
         return ResponseEntity.ok().body(lDTO);
     }
 
     @GetMapping("/docente/layout/getAll")
     public ResponseEntity<List<LayoutResponseDTO>> getAllLayouts(){
-        List<LayoutResponseDTO> lDTOList = lFacade.getLayouts();
-
+        List<LayoutResponseDTO> lDTOList = facade.getLayouts();
         return ResponseEntity.ok().body(lDTOList);
     }
 }

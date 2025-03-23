@@ -13,4 +13,5 @@ public interface TutorRepository extends JpaRepository<Tutor, Long> {
     Optional<Tutor> findByUsernameAndPasswordAndDisattivatoIsFalse(String username, String password);
 
     List<Tutor> findAllByDisattivatoIsFalse();
+
 }

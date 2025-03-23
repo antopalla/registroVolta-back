@@ -12,4 +12,5 @@ public interface DocenteService {
     Docente getDocenteByUsername(String username);
     Docente getDocente (long id);
     List<Docente> getDocenti();
+
 }

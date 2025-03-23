@@ -15,40 +15,35 @@ import java.util.List;
 @RestController
 public class ModuloController {
 
-    private final ModuloFacade mFacade;
+    private final ModuloFacade facade;
 
     @PostMapping("/admin/modulo/aggiungi")
     public ResponseEntity<Void> aggiungiModulo(@Valid @RequestBody AggiungiModuloRequestDTO request){
-        mFacade.aggiungiModulo(request);
-
+        facade.aggiungiModulo(request);
         return ResponseEntity.ok().build();
     }
 
     @PostMapping("/admin/modulo/modifica")
     public ResponseEntity<Void> modificaModulo(@Valid @RequestBody ModificaModuloRequestDTO request){
-
-        mFacade.modificaModulo(request);
+        facade.modificaModulo(request);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/admin/modulo/elimina/{id}")
     public ResponseEntity<Void> eliminaModulo(@PathVariable long id){
-        mFacade.eliminaModulo(id);
-
+        facade.eliminaModulo(id);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/docente/modulo/getModulo/{id}")
     public ResponseEntity<ModuloResponseDTO> getModulo(@PathVariable long id){
-        ModuloResponseDTO mDTO = mFacade.getModulo(id);
-
+        ModuloResponseDTO mDTO = facade.getModulo(id);
         return ResponseEntity.ok().body(mDTO);
     }
 
     @GetMapping("/docente/modulo/getAll")
     public ResponseEntity<List<ModuloResponseDTO>> getAllModuli(){
-        List<ModuloResponseDTO> mDTOList = mFacade.getAllModuli();
-
+        List<ModuloResponseDTO> mDTOList = facade.getAllModuli();
         return ResponseEntity.ok().body(mDTOList);
     }
 }

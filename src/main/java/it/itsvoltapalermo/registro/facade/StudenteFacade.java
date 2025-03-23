@@ -4,12 +4,14 @@ import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiStudenteRequestDTO
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaStudenteRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.didattica.StudenteAssenzeResponseDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.StudenteResponseDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UsernamePasswordResponseDTO;
 import it.itsvoltapalermo.registro.mapper.AssenzaMapper;
 import it.itsvoltapalermo.registro.mapper.StudenteMapper;
 import it.itsvoltapalermo.registro.model.Assenza;
 import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Studente;
 import it.itsvoltapalermo.registro.service.def.AssenzaService;
+import it.itsvoltapalermo.registro.service.def.AuthService;
 import it.itsvoltapalermo.registro.service.def.CorsoService;
 import it.itsvoltapalermo.registro.service.def.StudenteService;
 import lombok.RequiredArgsConstructor;
@@ -28,26 +30,41 @@ public class StudenteFacade {
     private final CorsoService cService;
     private final AssenzaService aService;
     private final AssenzaMapper aMapper;
+    private final AuthService authService;
     private final PasswordEncoder passwordEncoder;
 
-    public void aggiungiStudente(AggiungiStudenteRequestDTO request){
+    public UsernamePasswordResponseDTO aggiungiStudente(AggiungiStudenteRequestDTO request){
         Studente s = sMapper.fromAggiungiStudenteRequestDTO(request);
         s.setCorso(cService.getCorso(request.getIdCorso()));
         s.setRuolo(Ruolo.STUDENTE);
-        s.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        String username = authService.setUsernameStd(s.getNome(), s.getCognome());
+        s.setUsername(username);
+
+        String plainPassword = authService.generaPasswordSicura();
+        String hashedPassword = passwordEncoder.encode(plainPassword);
+        s.setPassword(hashedPassword);
+
+        UsernamePasswordResponseDTO sDTO = new UsernamePasswordResponseDTO();
+        sDTO.setUsername(username);
+        sDTO.setPlainPassword(plainPassword);
 
         sService.aggiungiStudente(s);
+
+        return sDTO;
     }
 
 
     public void modificaStudente(ModificaStudenteRequestDTO request){
         Studente s = sService.getStudente(request.getId());
+        if(!request.getNome().equals(s.getNome()) || !request.getCognome().equals(s.getCognome())){
+            s.setUsername(authService.setUsernameStd(request.getNome(), request.getCognome()));
+        }
         s.setNome(request.getNome());
         s.setCognome(request.getCognome());
         s.setCorso(cService.getCorso(request.getIdCorso()));
         s.setCodiceFiscale(request.getCodiceFiscale());
         s.setDataNascita(request.getDataNascita());
-        s.setUsername(request.getUsername());
 
         sService.modificaStudente(s);
     }

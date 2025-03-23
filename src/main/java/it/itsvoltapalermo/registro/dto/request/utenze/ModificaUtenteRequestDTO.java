@@ -18,9 +18,6 @@ public class ModificaUtenteRequestDTO {
     @NotBlank(message = "Il campo nome non può essere vuoto")
     private String cognome;
 
-    @NotBlank(message = "Il campo username non può essere vuoto")
-    private String username;
-
     @Past(message = "Non puoi essere nato nel futuro")
     private LocalDate dataNascita;
 

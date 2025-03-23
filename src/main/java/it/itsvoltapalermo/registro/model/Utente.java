@@ -27,7 +27,7 @@ public abstract class Utente implements UserDetails {
     private String nome;
     private String cognome;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = true)
     private String username;
     private String password;
 

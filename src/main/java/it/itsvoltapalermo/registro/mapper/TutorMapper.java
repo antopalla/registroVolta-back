@@ -14,7 +14,6 @@ public class TutorMapper {
         Tutor t = new Tutor();
         t.setNome(tDTO.getNome());
         t.setCognome(tDTO.getCognome());
-        t.setUsername(tDTO.getUsername());
         tDTO.setDataNascita(t.getDataNascita());
         tDTO.setCodiceFiscale(t.getCodiceFiscale());
         return t;

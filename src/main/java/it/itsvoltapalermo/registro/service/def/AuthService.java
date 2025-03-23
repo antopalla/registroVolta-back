@@ -13,4 +13,7 @@ public interface AuthService {
 
     List<Utente> getUtenti();
     List<Utente> getUtentiByRuolo (Ruolo ruolo);
+
+    String setUsernameStd(String nome, String cognome);
+    String generaPasswordSicura();
 }

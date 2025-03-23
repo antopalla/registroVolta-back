@@ -3,6 +3,7 @@ package it.itsvoltapalermo.registro.controller;
 import it.itsvoltapalermo.registro.dto.request.utenze.AggiungiTutorRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.ModificaTutorRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.utenze.TutorResponseDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UsernamePasswordResponseDTO;
 import it.itsvoltapalermo.registro.facade.TutorFacade;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +19,9 @@ public class TutorController {
     private final TutorFacade facade;
 
     @PostMapping("/admin/tutor/aggiungiTutor")
-    public ResponseEntity<Void> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
-        facade.aggiungiTutor(request);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UsernamePasswordResponseDTO> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
+        UsernamePasswordResponseDTO tDTO = facade.aggiungiTutor(request);
+        return ResponseEntity.ok(tDTO);
     }
 
     @PostMapping("/admin/tutor/aggiungiAdmin")
