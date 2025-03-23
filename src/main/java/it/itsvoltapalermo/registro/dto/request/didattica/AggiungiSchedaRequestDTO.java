@@ -9,12 +9,6 @@ import lombok.Data;
 @Data
 public class AggiungiSchedaRequestDTO {
 
-    @NotBlank(message = "Il campo pathScheda non può essere nullo")
-    private String pathScheda;
-
-    @NotBlank(message = "Il campo pathFirma non può essere nullo")
-    private String pathFirma;
-
     @Min(value = 0, message = "Il campo livelloPreparazioneIngresso non può essere minore di 0")
     @Max(value = 5, message = "Il campo livelloPreparazioneIngresso non può essere maggiore di 5")
     private int livelloPreparazioneIngresso;

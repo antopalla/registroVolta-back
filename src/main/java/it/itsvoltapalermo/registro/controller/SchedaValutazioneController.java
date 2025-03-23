@@ -23,18 +23,11 @@ public class SchedaValutazioneController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/docente/schedavalutazione/downloadscheda/{id}")
-    public ResponseEntity<ByteArrayResource> ottieniScheda(@PathVariable long id) {
-        try {
-            ByteArrayResource resource = facade.generaExcel(id);
+    @GetMapping("/docente/schedavalutazione/download/{id}")
+    public ResponseEntity<ByteArrayResource> downloadScheda(@PathVariable long id) {
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=scheda_di_valutazione_compilata.xlsx")
                     .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                    .body(resource);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseEntity.status(500).build();
-        }
+                    .body(facade.generaExcel(id));
     }
 }

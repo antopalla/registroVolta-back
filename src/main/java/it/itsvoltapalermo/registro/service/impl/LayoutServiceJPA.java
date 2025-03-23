@@ -5,6 +5,7 @@ import it.itsvoltapalermo.registro.model.Layout;
 import it.itsvoltapalermo.registro.repository.LayoutRepository;
 import it.itsvoltapalermo.registro.service.def.LayoutService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ import java.util.List;
 public class LayoutServiceJPA implements LayoutService {
 
     private final LayoutRepository repo;
+
+    @Value("${layouts.path}")
+    private String layoutFolder;
 
     @Override
     public void aggiungiLayout(Layout l) {

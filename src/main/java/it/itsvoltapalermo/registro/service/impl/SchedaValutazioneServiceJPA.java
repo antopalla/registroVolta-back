@@ -1,18 +1,22 @@
 package it.itsvoltapalermo.registro.service.impl;
 
+import it.itsvoltapalermo.registro.converters.FileEncryptorConverter;
 import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.SchedaValutazione;
 import it.itsvoltapalermo.registro.repository.SchedaValutazioneRepository;
 import it.itsvoltapalermo.registro.service.def.SchedaValutazioneService;
+import it.itsvoltapalermo.registro.utilities.FileManagerService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.compress.utils.IOUtils;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -23,6 +27,15 @@ import java.util.List;
 public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
 
     private final SchedaValutazioneRepository repo;
+    private final FileEncryptorConverter fileEncryptorConverter;
+    private final FileManagerService fileManagerService;
+
+    @Value("${layouts.path}")
+    private String layoutFolder;
+
+    @Value("${excel.outputs.path}")
+    private String outputFolder;
+
 
     @Override
     public void aggiungiSchedaValutazione(SchedaValutazione s) {
@@ -57,9 +70,15 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
     // Scrittura su excel
     public byte[] generaExcel(SchedaValutazione scheda) {
 
-        ClassPathResource layout = new ClassPathResource("layout/"+scheda.getLayout().getPath());
+        if (scheda.getPathScheda() != null) {
+            String fullPathScheda = outputFolder + File.separator + scheda.getPathScheda();
+            return fileManagerService.downloadFile(fullPathScheda);
+        }
 
-        try (InputStream is = layout.getInputStream()) {
+        String fullPathLayout = layoutFolder + File.separator + scheda.getLayout().getPath();
+        Resource resourceLayout = new ByteArrayResource(fileManagerService.downloadFile(fullPathLayout));
+
+        try (InputStream is = resourceLayout.getInputStream()) {
             Workbook workbook = new XSSFWorkbook(is);
 
             Sheet sheet = workbook.getSheetAt(0);
@@ -102,19 +121,15 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
             valoreCella(sheet, 27, 0, dataOdierna);
 
             // Firma in D28 (riga 27, colonna 3)
-            inserisciImmagine(workbook, sheet, 27, 3, scheda.getPathFirma());
+            inserisciImmagine(workbook, sheet, 26, 3, scheda);
 
             // Converto il Workbook in byte[]
             byte[] output = workbookToByteArray(workbook);
 
-            // Salvataggio su disco
-            String fileName = "files/scheda_di_valutazione_compilata_" + System.currentTimeMillis() + ".xlsx";
-            scheda.setPathScheda(fileName);
+            scheda.setPathScheda(fileManagerService.uploadFile(outputFolder, output));
+
             repo.save(scheda);
 
-            try (FileOutputStream fos = new FileOutputStream(fileName)) {
-                fos.write(output);
-            }
             return output;
 
         } catch (Exception e) {
@@ -171,34 +186,38 @@ public class SchedaValutazioneServiceJPA implements SchedaValutazioneService {
     /**
      * Inserisce un'immagine nella cella indicata da riga e colonna.
      */
-    private void inserisciImmagine(Workbook workbook, Sheet sheet, int rowIndex, int colIndex, String path) {
-        if (path != null) {
-            ClassPathResource pathFirma = new ClassPathResource("firme/"+path);
-            if (pathFirma.exists()) {
-                Row rigaFirma = sheet.getRow(rowIndex);
-                if (rigaFirma == null) {
-                    rigaFirma = sheet.createRow(rowIndex);
-                }
-                Cell cellaFirma = rigaFirma.getCell(colIndex);
-                if (cellaFirma == null) {
-                    cellaFirma = rigaFirma.createCell(colIndex);
-                }
-                cellaFirma.setCellValue("");
+    private void inserisciImmagine(Workbook workbook, Sheet sheet, int rowIndex, int colIndex, SchedaValutazione scheda) {
 
-                try {
-                    byte[] signatureBytes = IOUtils.toByteArray(pathFirma.getInputStream());
-                    int pictureIndex = workbook.addPicture(signatureBytes, Workbook.PICTURE_TYPE_PNG);
+        if (scheda.getDocente().getImmagineFirma() == null) throw new CustomResponseStatusException(HttpStatus.NOT_FOUND, "schedaValutazione", "Firma docente non presente");
 
-                    CreationHelper helper = workbook.getCreationHelper();
-                    Drawing<?> drawing = sheet.createDrawingPatriarch();
-                    ClientAnchor anchor = helper.createClientAnchor();
-                    anchor.setCol1(colIndex);
-                    anchor.setRow1(rowIndex);
-                    Picture pict = drawing.createPicture(anchor, pictureIndex);
-                    pict.resize();
-                } catch (Exception e) {
-                    throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "firma", "Errore nella lettura dell'immagine della firma");
-                }
+        Resource resourceFirma = new ByteArrayResource(scheda.getDocente().getImmagineFirma());
+
+        if (resourceFirma.exists()) {
+            Row rigaFirma = sheet.getRow(rowIndex);
+            if (rigaFirma == null) {
+                rigaFirma = sheet.createRow(rowIndex);
+            }
+            Cell cellaFirma = rigaFirma.getCell(colIndex);
+            if (cellaFirma == null) {
+                cellaFirma = rigaFirma.createCell(colIndex);
+            }
+            cellaFirma.setCellValue("");
+
+            try {
+                byte[] signatureBytes = IOUtils.toByteArray(resourceFirma.getInputStream());
+                int pictureIndex = workbook.addPicture(signatureBytes, Workbook.PICTURE_TYPE_PNG);
+
+                CreationHelper helper = workbook.getCreationHelper();
+                Drawing<?> drawing = sheet.createDrawingPatriarch();
+                ClientAnchor anchor = helper.createClientAnchor();
+                anchor.setCol1(colIndex);
+                anchor.setRow1(rowIndex);
+                anchor.setCol2(colIndex+4);
+                anchor.setRow2(rowIndex+2);
+                Picture pict = drawing.createPicture(anchor, pictureIndex);
+                pict.resize(0.75);
+            } catch (Exception e) {
+                throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "firma", "Errore nella lettura dell'immagine della firma");
             }
         }
     }

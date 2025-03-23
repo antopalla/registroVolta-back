@@ -16,6 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
 
@@ -46,18 +47,26 @@ public class AuthenticationFilter extends OncePerRequestFilter {
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
                 Utente u = null;
                 try {
-                    // Tenta di ottenere l'utente a partire dal token presente nell'header
+                    // Tenta di ottenere l'utente a partire dal token
                     u = service.getUtenteByToken(header);
-                } catch (JwtException ex) {
-                    // In caso di errore (token non valido, scaduto, ecc.) ritorna un errore 400
-                    response.setStatus(400);
-                    response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-                    // Mappa il messaggio di errore in un oggetto MessageDTO specificando l'attributo "authorization"
-                    MessageDTO e = messageMapper.toMessageDto(messageMapper.toDoubleAttribute("authorization", ex.getMessage()));
-                    // Scrive il messaggio d'errore in formato JSON nella risposta
-                    response.getWriter().write(objectMapper.writeValueAsString(e));
+                } catch (ResponseStatusException | JwtException ex) {
+                    String errorMsg = ex.getMessage();
+                    if (errorMsg != null && errorMsg.contains("JWT expired")) {
+                        // Se il token è scaduto, restituisci 401 con il messaggio "Login scaduto"
+                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
+                        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                        MessageDTO messageDTO = messageMapper.toMessageDto(messageMapper.toDoubleAttribute("authorization", "Login scaduto"));
+                        response.getWriter().write(objectMapper.writeValueAsString(messageDTO));
+                    } else {
+                        // Altrimenti restituisci un errore generico (400 o un altro status)
+                        response.setStatus(400);
+                        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+                        MessageDTO messageDTO = messageMapper.toMessageDto(messageMapper.toDoubleAttribute("authorization", errorMsg));
+                        response.getWriter().write(objectMapper.writeValueAsString(messageDTO));
+                    }
                     return;
                 }
+
 
                 // Crea un token di autenticazione Spring basato sull'utente ottenuto e le sue authorities
                 UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(u, null, u.getAuthorities());

@@ -9,8 +9,6 @@ public class SchedaValutazioneMapper {
 
     public SchedaValutazione fromAggiungiSchedaRequestDTO(AggiungiSchedaRequestDTO dto) {
         SchedaValutazione s = new SchedaValutazione();
-        s.setPathScheda(dto.getPathScheda());
-        s.setPathFirma(dto.getPathFirma());
 
         s.setLivelloPreparazioneIngresso(dto.getLivelloPreparazioneIngresso());
         s.setSocializzazione(dto.getSocializzazione());

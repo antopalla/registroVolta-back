@@ -12,9 +12,11 @@ import it.itsvoltapalermo.registro.model.Utente;
 import it.itsvoltapalermo.registro.service.def.AuthService;
 import it.itsvoltapalermo.registro.service.def.DocenteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -71,5 +73,29 @@ public class DocenteFacade {
 
     public List<DocenteResponseDTO> getDocenti() {
         return dMapper.toDocenteResponseDTOList(dService.getDocenti());
+    }
+
+    public void aggiungiFirma(MultipartFile file, Utente u) {
+        if (u.getRuolo() != Ruolo.DOCENTE) throw new CustomResponseStatusException(HttpStatus.FORBIDDEN, "docente", "Non hai i permessi per eseguire questa operazione");
+        if (!"image/png".equalsIgnoreCase(file.getContentType())) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "firma", "Il file caricato non è un'immagine PNG");
+
+        Docente d = dService.getDocente(u.getId());
+
+        try {
+            d.setImmagineFirma(file.getBytes());
+        } catch (Exception e) {
+            throw new CustomResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "firma", "Errore durante il caricamento dell'immagine");
+        }
+
+        dService.modificaDocente(d);
+    }
+
+    public ByteArrayResource downloadFirma(Utente u){
+        if (u.getRuolo() != Ruolo.DOCENTE) throw new CustomResponseStatusException(HttpStatus.FORBIDDEN, "docente", "Non hai i permessi per eseguire questa operazione");
+
+        Docente d = dService.getDocente(u.getId());
+
+        byte[] firma = d.getImmagineFirma();
+        return new ByteArrayResource(firma);
     }
 }
