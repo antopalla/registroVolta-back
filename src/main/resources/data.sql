@@ -1,5 +1,57 @@
+
 -- ##########################################
--- UTENTE (solo Docenti e Tutor)
+-- DIARIO DI BORDO
+-- ##########################################
+
+INSERT INTO diario_di_bordo (azienda_ospitante, tutor_aziendale, inizio_tirocinio, fine_tirocinio, data_creazione, disattivato)
+VALUES ('Azienda Alpha', 'Ing. Verdi', '2025-01-08', '2025-03-28', CURRENT_TIMESTAMP, false);
+
+INSERT INTO diario_di_bordo (azienda_ospitante, tutor_aziendale, inizio_tirocinio, fine_tirocinio, data_creazione, disattivato)
+VALUES ('Azienda Beta', 'Dott.ssa Bianchi', '2025-01-15', '2025-03-31', CURRENT_TIMESTAMP, false);
+
+-- ##########################################
+-- PAGINE DEL DIARIO DI BORDO
+-- ##########################################
+
+-- Pagina 1 per diario 1
+INSERT INTO pagina (
+    id_diario, disattivato, inizio_settimana, fine_settimana,
+    obiettivi_settimanali, riferimenti_discipline, riflessioni_personali, data_compilazione
+) VALUES (
+             1, false, '2025-01-08', '2025-01-14',
+             'Comprendere l’ambiente lavorativo',
+             'Tecnologia, Sicurezza sul lavoro',
+             'Settimana introduttiva molto interessante.',
+             CURRENT_TIMESTAMP
+         );
+
+-- Pagina 2 per diario 1
+INSERT INTO pagina (
+    id_diario, disattivato, inizio_settimana, fine_settimana,
+    obiettivi_settimanali, riferimenti_discipline, riflessioni_personali, data_compilazione
+) VALUES (
+             1, false, '2025-01-15', '2025-01-21',
+             'Affiancamento al tutor aziendale',
+             'Tecnologie informatiche, Project Management',
+             'Ho iniziato a svolgere attività operative.',
+             CURRENT_TIMESTAMP
+         );
+
+-- Pagina 1 per diario 2
+INSERT INTO pagina (
+    id_diario, disattivato, inizio_settimana, fine_settimana,
+    obiettivi_settimanali, riferimenti_discipline, riflessioni_personali, data_compilazione
+) VALUES (
+             2, false, '2025-01-15', '2025-01-21',
+             'Osservazione delle attività aziendali',
+             'Organizzazione aziendale, Sicurezza',
+             'Mi sto ambientando e sto conoscendo il team.',
+             CURRENT_TIMESTAMP
+         );
+
+
+-- ##########################################
+-- UTENTE ( Docenti, Tutor e Studenti)
 -- ##########################################
 
 -- Primo utente: Tutor (non admin)
@@ -34,6 +86,12 @@ VALUES ('2004-06-30', false, 3, 'Studente', 'Conte', 'Virginia', '$2a$10$7CUjHOc
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
 VALUES ('2005-05-30', false, 3, 'Studente', 'Gialli', 'Isabella', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
 
+-- Inseriamo gli studenti e li associamo a un corso (es: 1 e 2) — diario verrà aggiornato dopo l’inserimento
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
+VALUES ('2004-03-03', false,3, 'Studente' , 'Avella', 'Samuele','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
+VALUES ('2004-11-04', false,3, 'Studente' , 'Bartolo', 'Giulia','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
 
 -- ##########################################
 -- SEDE
