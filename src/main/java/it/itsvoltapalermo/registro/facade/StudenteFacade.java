@@ -68,6 +68,7 @@ public class StudenteFacade {
             s.setNome(request.getNome());
             s.setCognome(request.getCognome());
             s.setCorso(cService.getCorso(request.getIdCorso()));
+            s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
             s.setCodiceFiscale(request.getCodiceFiscale());
             s.setDataNascita(request.getDataNascita());
 
