@@ -25,6 +25,7 @@ public class SedeServiceJPA implements SedeService {
     @Override
     public void modificaSede(Sede s) {
         if(s.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
+        repo.save(s);
     }
 
     @Override

@@ -31,8 +31,10 @@ public class CorsoMapper {
         cDto.setDescrizione(c.getDescrizione());
         cDto.setSede(c.getSede().getNome());
         cDto.setTutor(c.getTutor().getNome() + " " + c.getTutor().getCognome());
-        cDto.setLezioni(lezioneMapper.toLezioneResponseDTOList(c.getLezioni()));
-        cDto.setStudenti(studenteMapper.toStudenteResponseListDTO(c.getStudenti()));
+
+        // TODO: scegliere come gestire le liste
+        //cDto.setLezioni(lezioneMapper.toLezioneResponseDTOList(c.getLezioni()));
+        //cDto.setStudenti(studenteMapper.toStudenteResponseListDTO(c.getStudenti()));
 
         return cDto;
     }

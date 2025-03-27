@@ -16,8 +16,8 @@ public class CorsoResponseDTO {
     private String sede;
     private String tutor;
 
-    private List<StudenteResponseDTO> studenti;
-    private List<LezioneResponseDTO> lezioni;
+    //private List<StudenteResponseDTO> studenti;
+    //private List<LezioneResponseDTO> lezioni;
 
     //TODO decidere come gestire le liste
 

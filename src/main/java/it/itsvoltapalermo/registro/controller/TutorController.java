@@ -20,7 +20,7 @@ public class TutorController {
 
     private final TutorFacade facade;
 
-    @PostMapping("/admin/tutor/aggiungiTutor")
+    @PostMapping("/admin/tutor/aggiungi")
     public ResponseEntity<UsernamePasswordResponseDTO> aggiungiTutor (@Valid @RequestBody AggiungiTutorRequestDTO request) {
         UsernamePasswordResponseDTO tDTO = facade.aggiungiTutor(request);
         return ResponseEntity.ok(tDTO);
@@ -32,14 +32,14 @@ public class TutorController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/tutor/tutor/modificaTutor")
+    @PostMapping("/tutor/tutor/modifica")
     public ResponseEntity<Void> modificaTutor (@Valid @RequestBody ModificaTutorRequestDTO request, UsernamePasswordAuthenticationToken upat) {
         Utente u = (Utente)upat.getPrincipal();
         facade.modificaTutor(request, u);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/admin/tutor/eliminaTutor/{id}")
+    @PutMapping("/admin/tutor/elimina/{id}")
     public ResponseEntity<Void> eliminaTutor (@PathVariable long id) {
         facade.eliminaTutor(id);
         return ResponseEntity.ok().build();

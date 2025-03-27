@@ -25,6 +25,7 @@ public class SedeFacade {
 
     public void modificaSede(ModificaSedeRequestDTO request){
         Sede s = sService.getSede(request.getId());
+        s.setNome(request.getNome());
         s.setIndirizzo(request.getIndirizzo());
         s.setCitta(request.getCitta());
         s.setCap(request.getCap());

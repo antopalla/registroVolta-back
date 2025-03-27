@@ -17,11 +17,11 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class LayoutController {
-    private final LayoutFacade lFacade;
+    private final LayoutFacade facade;
 
     @PostMapping(value = "/admin/layout/aggiungi", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> aggiungiLayout(@Valid @ModelAttribute AggiungiLayoutRequestDTO request){
-        lFacade.aggiungiLayout(request);
+        facade.aggiungiLayout(request);
 
         return ResponseEntity.ok().build();
     }
@@ -55,6 +55,6 @@ public class LayoutController {
             return ResponseEntity.ok()
                     .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=layout.xlsx")
                     .contentType(MediaType.parseMediaType("application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"))
-                    .body(lFacade.downloadLayout(id));
+                    .body(facade.downloadLayout(id));
     }
 }

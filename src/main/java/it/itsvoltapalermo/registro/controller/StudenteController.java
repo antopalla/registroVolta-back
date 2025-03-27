@@ -30,7 +30,6 @@ public class StudenteController {
         return ResponseEntity.ok(sDTO);
     }
 
-    //TODO modificare la rotta in modo che uno studente possa modificare solo sè stesso (passandogli l'upath)
     @PostMapping("/studente/studente/modifica")
     public ResponseEntity<Void> modificaStudente(@Valid @RequestBody ModificaStudenteRequestDTO request, UsernamePasswordAuthenticationToken upat) {
         Utente u = (Utente)upat.getPrincipal();
@@ -51,7 +50,7 @@ public class StudenteController {
         return ResponseEntity.ok(sDTO);
     }
 
-    @GetMapping("/admin/studente/getAll")
+    @GetMapping("/tutor/studente/getAll")
     public ResponseEntity<List<StudenteResponseDTO>> getAllStudenti(){
         List<StudenteResponseDTO> sDTOList = facade.getAllStudenti();
         return ResponseEntity.ok(sDTOList);

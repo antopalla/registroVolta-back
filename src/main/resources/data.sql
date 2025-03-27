@@ -4,7 +4,7 @@
 
 -- Primo utente: Tutor (non admin)
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
-VALUES (NULL, false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin');
+VALUES ('1970-01-01', false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin');
 
 -- Altri utenti (Docenti, Tutor e Studenti)
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
@@ -88,38 +88,6 @@ VALUES (false, 6, 4, 'Corso di Informatica', 'Sistemi Operativi');
 INSERT INTO corso (disattivato, id_sede, id_tutor, descrizione, nome)
 VALUES (false, 7, 6, 'Corso di Economia', 'Microeconomia');
 
-
-
--- ##########################################
--- STUDENTE
--- ##########################################
-/*
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 1, 'Rossi', 'Luigi');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 2, 'Verdi', 'Marta');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 3, 'Bianchi', 'Carla');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 4, 'Neri', 'Giorgio');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 5, 'Gialli', 'Francesca');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 6, 'Rossi', 'Stefano');
-
-INSERT INTO studente (disattivato, id_corso, cognome, nome)
-VALUES (false, 7, 'De Luca', 'Silvia');
-*/
-
-
--- ##########################################
--- MODULO
--- ##########################################
 
 -- NOTA: il campo id_docente deve fare riferimento a un utente con ruolo 0 (Docente)
 INSERT INTO modulo (disattivato, id_corso, id_docente, denominazione)

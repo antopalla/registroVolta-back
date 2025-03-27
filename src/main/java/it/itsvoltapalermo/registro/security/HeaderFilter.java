@@ -28,8 +28,6 @@ public class HeaderFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        // Aggiunge l'header che consente a qualsiasi origine di accedere alle risorse
-        response.addHeader("Access-Control-Allow-Origin", "*");
         // Aggiunge l'header che permette a qualsiasi header di essere utilizzato nelle richieste
         response.addHeader("Access-Control-Allow-Headers", "*");
         // Aggiunge l'header che specifica i metodi HTTP consentiti
