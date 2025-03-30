@@ -36,8 +36,7 @@ public abstract class Utente implements UserDetails {
 
     private LocalDate dataNascita;
 
-    //TODO rimettere unique a true e nullable a false
-    @Column(unique = false, nullable = true)
+    @Column(unique = true, nullable = false)
     private String codiceFiscale;
 
     // Implementazione dei metodi di UserDetails

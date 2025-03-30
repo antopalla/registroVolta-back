@@ -17,5 +17,7 @@ public class LezioneResponseDTO {
 
     private String descrizione;
 
-    //TODO decidere come gestire le liste
+    private long idCorso;
+    private long idDocente;
+    private long idModulo;
 }

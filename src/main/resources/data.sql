@@ -3,37 +3,30 @@
 -- ##########################################
 
 -- Primo utente: Tutor (non admin)
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
-VALUES ('1970-01-01', false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username, codice_fiscale)
+VALUES ('1970-01-01', false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin', 'PLNMRAA00A01H501Z');
 
 -- Altri utenti (Docenti, Tutor e Studenti)
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'RSSMRA80A01H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1975-05-15', false, 0, 'Docente', 'Bianchi', 'Luca', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1975-05-15', false, 0, 'Docente', 'Bianchi', 'Luca', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'BNCMLC75E15H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1990-09-10', false, 1, 'Tutor', 'Verdi', 'Claudio', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1990-09-10', false, 1, 'Tutor', 'Verdi', 'Claudio', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'VRDCLD90P10H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1988-03-12', false, 0, 'Docente', 'Russo', 'Marco', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1988-03-12', false, 0, 'Docente', 'Russo', 'Marco', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'RSSMRC88C12H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1992-11-23', false, 1, 'Tutor', 'Ferrari', 'Sara', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1992-11-23', false, 1, 'Tutor', 'Ferrari', 'Sara', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'FRRSR92S23H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1982-04-18', false, 0, 'Docente', 'Esposito', 'Paolo', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1982-04-18', false, 0, 'Docente', 'Esposito', 'Paolo', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'ESPPLP82D18H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('1995-06-30', false, 1, 'Tutor', 'Conti', 'Laura', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
-
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username)
-VALUES ('2004-06-30', false, 3, 'Studente', 'Conte', 'Virginia', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'v.conte');
-
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('2005-05-30', false, 3, 'Studente', 'Gialli', 'Isabella', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
-
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
+VALUES ('1995-06-30', false, 1, 'Tutor', 'Conti', 'Laura', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'CNTLRA95H30H501Z');
 
 -- ##########################################
 -- SEDE
@@ -87,6 +80,16 @@ VALUES (false, 6, 4, 'Corso di Informatica', 'Sistemi Operativi');
 
 INSERT INTO corso (disattivato, id_sede, id_tutor, descrizione, nome)
 VALUES (false, 7, 6, 'Corso di Economia', 'Microeconomia');
+
+
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username, id_corso, codice_fiscale)
+VALUES ('2004-06-30', false, 3, 'Studente', 'Conte', 'Virginia', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'v.conte', 2, 'CNTVIR04H30H501Z');
+
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, id_corso, codice_fiscale)
+VALUES ('2005-05-30', false, 3, 'Studente', 'Gialli', 'Isabella', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 3, 'GILISA05E70H501Z');
+
+
+
 
 
 -- NOTA: il campo id_docente deve fare riferimento a un utente con ruolo 0 (Docente)

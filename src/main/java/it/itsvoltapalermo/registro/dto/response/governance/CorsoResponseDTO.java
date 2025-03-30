@@ -13,8 +13,8 @@ public class CorsoResponseDTO {
     private String nome;
     private String descrizione;
 
-    private String sede;
-    private String tutor;
+    private long idSede;
+    private long idTutor;
 
     //private List<StudenteResponseDTO> studenti;
     //private List<LezioneResponseDTO> lezioni;

@@ -29,9 +29,8 @@ public class DocenteMapper {
         dDTO.setDataNascita(d.getDataNascita().toString());
         dDTO.setCodiceFiscale(d.getCodiceFiscale());
 
-
-        // dDTO.setUsername(d.getUsername());
-        // dDTO.setRuolo(d.getRuolo().toString());
+        dDTO.setUsername(d.getUsername());
+        dDTO.setRuolo(d.getRuolo().toString());
 
         return dDTO;
     }

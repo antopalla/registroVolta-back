@@ -28,6 +28,10 @@ public class LezioneMapper {
         lDTO.setData(l.getData());
         lDTO.setOraInizio(l.getOraInizio());
         lDTO.setOraFine(l.getOraFine());
+        lDTO.setIdCorso(l.getCorso().getId());
+        lDTO.setIdDocente(l.getDocente().getId());
+        lDTO.setIdModulo(l.getModulo().getId());
+
         return lDTO;
     }
 

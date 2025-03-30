@@ -6,6 +6,6 @@ import lombok.Data;
 public class AssenzaResponseDTO {
     private long id;
     private double durata;
-    private String studente;
-    private String lezione;
+    private long idStudente;
+    private long idLezione;
 }

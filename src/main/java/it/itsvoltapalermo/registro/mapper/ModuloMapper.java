@@ -21,6 +21,9 @@ public class ModuloMapper {
         ModuloResponseDTO mDTO = new ModuloResponseDTO();
         mDTO.setId(m.getId());
         mDTO.setDenominazione(m.getDenominazione());
+        mDTO.setIdCorso(m.getCorso().getId());
+        mDTO.setIdDocente(m.getDocente().getId());
+
         return mDTO;
     }
 

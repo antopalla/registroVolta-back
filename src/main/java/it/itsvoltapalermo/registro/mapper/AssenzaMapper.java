@@ -21,8 +21,8 @@ public class AssenzaMapper {
         AssenzaResponseDTO aDto = new AssenzaResponseDTO();
         aDto.setId(a.getId());
         aDto.setDurata(a.getDurata());
-        aDto.setStudente(a.getStudente().getNome() + " " + a.getStudente().getCognome());
-        aDto.setLezione(a.getLezione().getData().toString());
+        aDto.setIdStudente(a.getStudente().getId());
+        aDto.setIdLezione(a.getLezione().getId());
 
         return aDto;
     }

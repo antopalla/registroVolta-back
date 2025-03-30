@@ -11,7 +11,6 @@ public class UtenteResponseDTO {
     private String dataNascita;
     private String codiceFiscale;
 
-    //TODO in teoria no
-    //private String username;
-    //private String ruolo;
+    private String username;
+    private String ruolo;
 }
