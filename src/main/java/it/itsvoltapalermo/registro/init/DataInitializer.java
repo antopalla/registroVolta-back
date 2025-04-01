@@ -8,6 +8,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @RequiredArgsConstructor
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -21,9 +23,13 @@ public class DataInitializer implements CommandLineRunner {
         if (repo.count() == 0) {
             System.out.println("DataInitializer: repo.count() == 0, creazione tutor admin");
             Tutor admin = new Tutor();
+            admin.setNome("Amministratore");
+            admin.setCognome("Registro");
             admin.setUsername("admin");
             admin.setPassword(passwordEncoder.encode("admin"));
             admin.setRuolo(Ruolo.ADMIN);
+            admin.setCodiceFiscale("RGSMNS70A01H501K");
+            admin.setDataNascita(LocalDate.parse("1970-01-01"));
             repo.save(admin);
 
             System.out.println("DataInitializer: Utente admin creato.");

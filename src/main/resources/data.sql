@@ -139,11 +139,11 @@ VALUES ('2004-06-30', false, 3, 'Studente', 'Conte', 'Virginia', '$2a$10$7CUjHOc
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, id_corso, codice_fiscale)
 VALUES ('2005-05-30', false, 3, 'Studente', 'Gialli', 'Isabella', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 3, 'GILISA05E70H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('2004-03-03', false,3, 'Studente' , 'Avella', 'Samuele','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, id_corso, codice_fiscale)
+VALUES ('2004-03-03', false,3, 'Studente' , 'Avella', 'Samuele','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 3, 'AVLSML04C03H501Z');
 
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password)
-VALUES ('2004-11-04', false,3, 'Studente' , 'Bartolo', 'Giulia','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, id_corso, codice_fiscale)
+VALUES ('2004-11-04', false,3, 'Studente' , 'Bartolo', 'Giulia','$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 2, 'BRTGLI04S44H501Z');
 
 
 

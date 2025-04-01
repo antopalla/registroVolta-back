@@ -61,6 +61,7 @@ public class GestoreTokenService {
                 .issuedAt(new Date(System.currentTimeMillis())) // Data di emissione
                 .expiration(new Date(System.currentTimeMillis() + durata)) // Data di scadenza (8 ore dopo)
                 .add("ruolo", u.getRuolo()) // Aggiunge il ruolo dell'utente come claim personalizzato
+                .add("nomecognome", u.getNome() + " " + u.getCognome()) // Aggiunge il nome e cognome dell'utente come claim personalizzato
                 .and() // Termina la configurazione dei claims
                 .signWith(getSecretKey()) // Firma il token con la chiave segreta
                 .compact(); // Compatta e restituisce il token in formato String
