@@ -35,7 +35,7 @@ public class SedeController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/docente/sede/getSede/{id}")
+    @GetMapping("/studente/sede/getSede/{id}")
     public ResponseEntity<SedeResponseDTO> getSede(@PathVariable long id){
         SedeResponseDTO sDTO = facade.getSede(id);
         return ResponseEntity.ok().body(sDTO);

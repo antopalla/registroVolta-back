@@ -5,6 +5,7 @@ import it.itsvoltapalermo.registro.security.handlers.SecurityResponseHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +15,11 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.util.List;
 
 /**
  * Configurazione della catena dei filtri di sicurezza per l'applicazione.
@@ -45,6 +51,7 @@ public class GestoreFilterChain {
      */
     @Bean
     protected SecurityFilterChain getFilterChain(HttpSecurity http) throws Exception {
+        String[] optionsPath = {"/login/**"};
         http
                 // Disabilita la protezione CSRF
                 .csrf(AbstractHttpConfigurer::disable)
@@ -52,7 +59,8 @@ public class GestoreFilterChain {
                 .headers(c -> c.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 // Configurazione delle regole di autorizzazione per le richieste HTTP
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers("studente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.TUTOR.toString(), Ruolo.DOCENTE.toString(), Ruolo.STUDENTE.toString())
+                        .requestMatchers(HttpMethod.OPTIONS, optionsPath).permitAll()
+                        .requestMatchers("/studente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.TUTOR.toString(), Ruolo.DOCENTE.toString(), Ruolo.STUDENTE.toString())
                         // Solo gli utenti con ruolo DOCENTE possono accedere agli endpoint "/docente/**"
                         .requestMatchers("/docente/**").hasAnyRole(Ruolo.ADMIN.toString(), Ruolo.TUTOR.toString(), Ruolo.DOCENTE.toString())
                         // Gli utenti con ruolo TUTOR o DOCENTE possono accedere agli endpoint "/tutor/**"
@@ -72,7 +80,7 @@ public class GestoreFilterChain {
                         .accessDeniedHandler(accessDeniedHandler)
                 )
                 // Disabilita il CORS (Cross-Origin Resource Sharing) oppure ne delega la gestione altrove
-                .cors(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 // Configura la gestione della sessione in modalità stateless (senza sessione)
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 // Imposta il provider di autenticazione da utilizzare
@@ -84,5 +92,18 @@ public class GestoreFilterChain {
 
         // Costruisce e restituisce la catena dei filtri configurata
         return http.build();
+    }
+
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedHeaders(List.of("*"));
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
     }
 }

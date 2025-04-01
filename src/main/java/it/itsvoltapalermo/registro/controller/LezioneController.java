@@ -35,7 +35,7 @@ public class LezioneController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/docente/lezione/getLezione/{id}")
+    @GetMapping("/studente/lezione/getLezione/{id}")
     public ResponseEntity<LezioneResponseDTO> getLezione(@PathVariable long id) {
         LezioneResponseDTO lDTO = facade.getLezione(id);
         return ResponseEntity.ok().body(lDTO);

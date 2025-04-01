@@ -27,11 +27,13 @@ public class StudenteMapper {
         sDTO.setId(s.getId());
         sDTO.setNome(s.getNome());
         sDTO.setCognome(s.getCognome());
-        sDTO.setUsername(s.getUsername());
         sDTO.setDataNascita(s.getDataNascita().toString());
         sDTO.setCodiceFiscale(s.getCodiceFiscale());
-        sDTO.setCorso(s.getCorso().getNome());
+        sDTO.setIdCorso(s.getCorso().getId());
+
+        sDTO.setUsername(s.getUsername());
         sDTO.setRuolo(s.getRuolo().toString());
+
         return sDTO;
     }
 

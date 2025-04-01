@@ -24,27 +24,27 @@ public class DocenteController {
 
     private final DocenteFacade facade;
 
-    @PostMapping("/admin/docente/aggiungiDocente")
+    @PostMapping("/admin/docente/aggiungi")
     public ResponseEntity<UsernamePasswordResponseDTO> aggiungiDocente (@Valid @RequestBody AggiungiDocenteRequestDTO request) {
         UsernamePasswordResponseDTO dDTO = facade.aggiungiDocente(request);
         return ResponseEntity.ok(dDTO);
     }
 
-    @PostMapping("/docente/docente/modificaDocente")
+    @PostMapping("/docente/docente/modifica")
     public ResponseEntity<Void> modificaDocente (@Valid @RequestBody ModificaDocenteRequestDTO request, UsernamePasswordAuthenticationToken upat) {
         Utente u = (Utente)upat.getPrincipal();
         facade.modificaDocente(request, u);
         return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/admin/docente/eliminaDocente/{id}")
+    @PutMapping("/admin/docente/elimina/{id}")
     public ResponseEntity<Void> eliminaDocente (@PathVariable long id) {
         facade.eliminaDocente(id);
         return ResponseEntity.ok().build();
     }
 
     //TODO Modificare con security
-    @GetMapping("/docente/docente/getDocente/{id}")
+    @GetMapping("/docente/docente/get/{id}")
     public ResponseEntity<DocenteResponseDTO> getDocente (@PathVariable long id) {
         DocenteResponseDTO tDTO = facade.getDocente(id);
         return ResponseEntity.ok(tDTO);

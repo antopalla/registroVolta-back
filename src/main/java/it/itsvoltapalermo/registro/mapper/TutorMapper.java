@@ -24,10 +24,12 @@ public class TutorMapper {
         tDTO.setId(t.getId());
         tDTO.setNome(t.getNome());
         tDTO.setCognome(t.getCognome());
-        tDTO.setUsername(t.getUsername());
         tDTO.setDataNascita(t.getDataNascita().toString());
         tDTO.setCodiceFiscale(t.getCodiceFiscale());
+
+        tDTO.setUsername(t.getUsername());
         tDTO.setRuolo(t.getRuolo().toString());
+
         return tDTO;
     }
 

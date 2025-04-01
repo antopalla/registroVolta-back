@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
@@ -18,7 +17,6 @@ import java.util.List;
 @Entity
 @DiscriminatorValue("Docente")
 public class Docente extends Utente {
-    private LocalDate dataNascita;
 
     @Lob
     @Convert(converter = ImageEncryptorConverter.class)

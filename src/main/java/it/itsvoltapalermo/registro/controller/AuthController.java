@@ -32,13 +32,6 @@ public class AuthController {
     private final GestoreTokenService service;
 
     @Operation(summary = "Login", description = "Effettua il login e restituisce il token")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "OK (200)", description = "Utente trovato (all'interno dell'header troverai il token)"),
-            @ApiResponse(responseCode = "NOT FOUND (404)", description = "Nessun utente con le credenziali inserite", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "BAD REQUEST (400)", description = "Credenziali inserite non rispettano i canoni per la request", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "I'M A TEAPOT (418)", description = "Non hai inserito il body", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "METHOD NOT ALLOWED (405)", description = "Devi chiamare il metodo in post", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class)))
-    })
     @PostMapping("/login")
     public ResponseEntity<Void> login (@Valid @RequestBody LoginRequestDTO request) {
         Utente u = facade.login(request);
@@ -46,13 +39,6 @@ public class AuthController {
     }
 
     @Operation(summary = "Cambio password", description = "Cambia la password dell'utente autenticato")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "OK (200)", description = "Password cambiata"),
-            @ApiResponse(responseCode = "NOT FOUND (404)", description = "Nessun utente con le credenziali inserite", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "BAD REQUEST (400)", description = "Credenziali inserite non rispettano i canoni per la request", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "I'M A TEAPOT (418)", description = "Non hai inserito il body", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class))),
-            @ApiResponse(responseCode = "METHOD NOT ALLOWED (405)", description = "Devi chiamare il metodo in post", content = @Content(mediaType = MediaType.APPLICATION_JSON_VALUE, schema = @Schema(implementation = MessageDTO.class)))
-    })
     @PostMapping("/authorized/utente/cambiaPassword")
     public ResponseEntity<Void> cambiaPassword (@Valid @RequestBody CambiaPasswordRequestDTO request, UsernamePasswordAuthenticationToken upat) {
         Utente u = (Utente)upat.getPrincipal();

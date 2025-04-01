@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class StudenteResponseDTO extends UtenteResponseDTO {
 
-    private String corso;
+    private long idCorso;
 
     //TODO decidere come gestire le liste
 }

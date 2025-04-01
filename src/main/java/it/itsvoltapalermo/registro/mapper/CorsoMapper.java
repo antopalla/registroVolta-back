@@ -13,9 +13,6 @@ import java.util.List;
 @Component
 public class CorsoMapper {
 
-    private final LezioneMapper lezioneMapper;
-    private final StudenteMapper studenteMapper;
-
     public Corso fromAggiungiCorsoRequestDTO(AggiungiCorsoRequestDTO cDTO){
         Corso c = new Corso();
         c.setNome(cDTO.getNome());
@@ -29,10 +26,8 @@ public class CorsoMapper {
         cDto.setId(c.getId());
         cDto.setNome(c.getNome());
         cDto.setDescrizione(c.getDescrizione());
-        cDto.setSede(c.getSede().getNome());
-        cDto.setTutor(c.getTutor().getNome() + " " + c.getTutor().getCognome());
-        cDto.setLezioni(lezioneMapper.toLezioneResponseDTOList(c.getLezioni()));
-        cDto.setStudenti(studenteMapper.toStudenteResponseListDTO(c.getStudenti()));
+        cDto.setIdSede(c.getSede().getId());
+        cDto.setIdTutor(c.getTutor().getId());
 
         return cDto;
     }
