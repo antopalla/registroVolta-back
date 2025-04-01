@@ -12,10 +12,7 @@ import it.itsvoltapalermo.registro.model.Assenza;
 import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.model.Studente;
 import it.itsvoltapalermo.registro.model.Utente;
-import it.itsvoltapalermo.registro.service.def.AssenzaService;
-import it.itsvoltapalermo.registro.service.def.AuthService;
-import it.itsvoltapalermo.registro.service.def.CorsoService;
-import it.itsvoltapalermo.registro.service.def.StudenteService;
+import it.itsvoltapalermo.registro.service.def.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,12 +29,14 @@ public class StudenteFacade {
     private final StudenteService sService;
     private final CorsoService cService;
     private final AssenzaService aService;
+    private final DiarioDiBordoService dService;
     private final AssenzaMapper aMapper;
     private final AuthService authService;
     private final PasswordEncoder passwordEncoder;
 
     public UsernamePasswordResponseDTO aggiungiStudente(AggiungiStudenteRequestDTO request){
         Studente s = sMapper.fromAggiungiStudenteRequestDTO(request);
+        s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
         s.setCorso(cService.getCorso(request.getIdCorso()));
         s.setRuolo(Ruolo.STUDENTE);
 
@@ -69,6 +68,7 @@ public class StudenteFacade {
             s.setNome(request.getNome());
             s.setCognome(request.getCognome());
             s.setCorso(cService.getCorso(request.getIdCorso()));
+            s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
             s.setCodiceFiscale(request.getCodiceFiscale());
             s.setDataNascita(request.getDataNascita());
 

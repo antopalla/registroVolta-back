@@ -46,4 +46,9 @@ public class ModuloController {
         List<ModuloResponseDTO> mDTOList = facade.getAllModuli();
         return ResponseEntity.ok().body(mDTOList);
     }
+    @GetMapping("/admin/modulo/getAllByCorso/{idCorso}")
+    public ResponseEntity<List<ModuloResponseDTO>> getAllModuliByCorso(@PathVariable long idCorso){
+        List<ModuloResponseDTO> mDTOList = facade.getAllModuliByCorso(idCorso);
+        return ResponseEntity.ok().body(mDTOList);
+    }
 }

@@ -26,4 +26,9 @@ public class Studente extends Utente{
     @JoinColumn(name = "id_corso", nullable = true)
     private Corso corso;
 
+    //TODO rimettere nullable a false
+    @OneToOne
+    @JoinColumn(name = "id_diario", unique = true, nullable = true)
+    private DiarioDiBordo diarioDiBordo;
+
 }
