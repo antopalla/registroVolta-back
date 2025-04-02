@@ -32,7 +32,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class GestoreFilterChain {
 
-    @Value("$(frontend.url}")
+    @Value("${frontend.url}")
     private String frontendUrl;
 
     // Handler per la gestione delle risposte di errore in fase di autenticazione
