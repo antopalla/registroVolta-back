@@ -3,6 +3,7 @@ package it.itsvoltapalermo.registro.security;
 import it.itsvoltapalermo.registro.model.Ruolo;
 import it.itsvoltapalermo.registro.security.handlers.SecurityResponseHandler;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,6 +31,9 @@ import java.util.List;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class GestoreFilterChain {
+
+    @Value("$(frontend.url}")
+    private String frontendUrl;
 
     // Handler per la gestione delle risposte di errore in fase di autenticazione
     private final SecurityResponseHandler responseHandler;
@@ -97,7 +101,7 @@ public class GestoreFilterChain {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+        configuration.setAllowedOrigins(List.of(frontendUrl));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
