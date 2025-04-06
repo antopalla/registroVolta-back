@@ -2,11 +2,13 @@ package it.itsvoltapalermo.registro.facade;
 
 import it.itsvoltapalermo.registro.dto.request.utenze.CambiaPasswordRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.LoginRequestDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UtenteResponseDTO;
 import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Utente;
 import it.itsvoltapalermo.registro.service.def.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,22 @@ public class AuthFacade {
         if (!requestDTO.getNuovaPassword().equals(requestDTO.getNuovaPasswordRipetuta())) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "password", "Le password non coincidono");
 
         u.setPassword(passwordEncoder.encode(requestDTO.getNuovaPassword()));
+        u.setPrimoAccesso(false);
         uService.modificaUtente(u);
+    }
+
+    public UtenteResponseDTO getUtente(Utente u) {
+        if (u.isDisattivato()) throw new CustomResponseStatusException(HttpStatus.UNAUTHORIZED, "utente", "Utente non presente");
+
+        UtenteResponseDTO uDTO = new UtenteResponseDTO();
+        uDTO.setId(u.getId());
+        uDTO.setNome(u.getNome());
+        uDTO.setCognome(u.getCognome());
+        uDTO.setCodiceFiscale(u.getCodiceFiscale());
+        uDTO.setDataNascita(u.getDataNascita().toString());
+        uDTO.setUsername(u.getUsername());
+        uDTO.setRuolo(u.getRuolo().toString());
+
+        return uDTO;
     }
 }

@@ -12,6 +12,6 @@ public class LayoutResponseDTO {
     private String nome;
     private String descrizione;
     private String path;
-    private LocalDateTime dataCreazione;
+    private String dataCreazione;
 
 }

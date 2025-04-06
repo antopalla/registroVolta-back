@@ -1,26 +1,19 @@
 package it.itsvoltapalermo.registro.controller;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import it.itsvoltapalermo.registro.dto.request.utenze.CambiaPasswordRequestDTO;
 import it.itsvoltapalermo.registro.dto.request.utenze.LoginRequestDTO;
-import it.itsvoltapalermo.registro.dto.response.errors.MessageDTO;
+import it.itsvoltapalermo.registro.dto.response.utenze.UtenteResponseDTO;
 import it.itsvoltapalermo.registro.facade.AuthFacade;
 import it.itsvoltapalermo.registro.model.Utente;
 import it.itsvoltapalermo.registro.security.GestoreTokenService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -44,5 +37,11 @@ public class AuthController {
         Utente u = (Utente)upat.getPrincipal();
         facade.cambiaPassword(request, u);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/authorized/utente/getUtente")
+    public ResponseEntity<UtenteResponseDTO> getDocente (UsernamePasswordAuthenticationToken upat) {
+        UtenteResponseDTO uDTO = facade.getUtente((Utente)upat.getPrincipal());
+        return ResponseEntity.ok(uDTO);
     }
 }

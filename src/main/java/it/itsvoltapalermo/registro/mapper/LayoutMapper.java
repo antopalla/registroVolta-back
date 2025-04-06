@@ -24,7 +24,7 @@ public class LayoutMapper {
         lDTO.setId(l.getId());
         lDTO.setNome(l.getNome());
         lDTO.setDescrizione(l.getDescrizione());
-        lDTO.setDataCreazione(l.getDataCreazione());
+        lDTO.setDataCreazione(l.getDataCreazione().toString());
         lDTO.setPath(l.getPath());
 
         return lDTO;

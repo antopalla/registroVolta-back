@@ -72,4 +72,10 @@ public class DocenteController {
                 .contentType(MediaType.IMAGE_PNG)
                 .body(facade.downloadFirma(u));
     }
+
+    @GetMapping("/docente/docente/checkFirma")
+    public ResponseEntity<Boolean> checkFirma(UsernamePasswordAuthenticationToken upat) {
+        Utente u = (Utente)upat.getPrincipal();
+        return ResponseEntity.ok().body(facade.checkFirma(u));
+    }
 }
