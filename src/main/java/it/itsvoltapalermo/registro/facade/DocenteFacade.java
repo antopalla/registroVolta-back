@@ -98,4 +98,8 @@ public class DocenteFacade {
         byte[] firma = d.getImmagineFirma();
         return new ByteArrayResource(firma);
     }
+
+    public boolean checkFirma(Utente u) {
+        return dService.getDocente(u.getId()).getImmagineFirma() != null;
+    }
 }
