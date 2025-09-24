@@ -48,4 +48,12 @@ public class AssenzaFacade {
     public List<AssenzaResponseDTO> getAssenze() {
         return aMapper.toAssenzaResponseDTOList(aService.getAssenze());
     }
+
+    public List<AssenzaResponseDTO> getAssenzeByStudente(long idStudente) {
+        return aMapper.toAssenzaResponseDTOList(aService.getAssenzeByStudente(idStudente));
+    }
+
+    public List<AssenzaResponseDTO> getAssenzeByLezione(long idLezione) {
+        return aMapper.toAssenzaResponseDTOList(aService.getAssenzeByLezione(idLezione));
+    }
 }

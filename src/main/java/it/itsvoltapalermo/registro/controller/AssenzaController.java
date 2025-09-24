@@ -46,4 +46,16 @@ public class AssenzaController {
         List<AssenzaResponseDTO> aDTOList = facade.getAssenze();
         return ResponseEntity.ok().body(aDTOList);
     }
+
+    @GetMapping("/tutor/assenza/getAssenzeByStudente/{idStudente}")
+    public ResponseEntity<List<AssenzaResponseDTO>> getAssenzeByStudente(@PathVariable long idStudente){
+        List<AssenzaResponseDTO> aDTOList = facade.getAssenzeByStudente(idStudente);
+        return ResponseEntity.ok().body(aDTOList);
+    }
+
+    @GetMapping("/tutor/assenza/getAssenzeByLezione/{idLezione}")
+    public ResponseEntity<List<AssenzaResponseDTO>> getAssenzeByLezione(@PathVariable long idLezione){
+        List<AssenzaResponseDTO> aDTOList = facade.getAssenzeByLezione(idLezione);
+        return ResponseEntity.ok().body(aDTOList);
+    }
 }

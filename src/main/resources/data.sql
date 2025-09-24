@@ -55,12 +55,12 @@ INSERT INTO pagina (
 -- ##########################################
 
 -- Primo utente: Tutor (non admin)
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username, codice_fiscale)
-VALUES ('1970-01-01', false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin', 'PLNMRAA00A01H501Z');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username, codice_fiscale, primo_accesso)
+VALUES ('1970-01-01', false, 2, 'Tutor', NULL, NULL, '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'admin', 'PLNMRAA00A01H501Z', false);
 
 -- Altri utenti (Docenti, Tutor e Studenti)
-INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
-VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'RSSMRA80A01H501Z');
+INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, username, codice_fiscale, primo_accesso)
+VALUES ('1980-01-01', false, 0, 'Docente', 'Rossi', 'Mario', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'm.rossi', 'RSSMRA80A01H501Z', false);
 
 INSERT INTO utente (data_nascita, disattivato, ruolo, tipo, cognome, nome, password, codice_fiscale)
 VALUES ('1975-05-15', false, 0, 'Docente', 'Bianchi', 'Luca', '$2a$10$7CUjHOceP3XreTaJ6P0zM.bGlsvg73Ei7atdPO3KUiTxKo8R0lhc2', 'BNCMLC75E15H501Z');
@@ -202,25 +202,10 @@ VALUES ('2023-02-07', false, '18:00:00', '16:00:00', 7, 7, 7, 'Lezione 7: Conclu
 -- ##########################################
 
 INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 1.5, 1, 1);
+VALUES (false, 1.5, 1, 10);
 
 INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 2.0, 2, 2);
+VALUES (false, 2.0, 2, 11);
 
 INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 1.0, 3, 3);
-
-INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 0.5, 4, 4);
-
-INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 2.5, 5, 5);
-
-INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 1.2, 6, 6);
-
-INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 1.8, 7, 7);
-
-INSERT INTO assenza (disattivato, durata, id_lezione, id_studente)
-VALUES (false, 2.5, 5, 5);
+VALUES (false, 1.0, 3, 12);

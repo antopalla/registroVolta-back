@@ -11,5 +11,6 @@ public interface AssenzaRepository extends JpaRepository<Assenza, Long> {
     Optional<Assenza> findByIdAndDisattivatoIsFalse(long id);
 
     List<Assenza> findAllByDisattivatoIsFalse();
-    List<Assenza> findAllByStudente_IdAndDisattivatoIsFalse(long id);
+    List<Assenza> findAllByStudente_IdAndDisattivatoIsFalse(long idStudente);
+    List<Assenza> findAllByLezione_IdAndDisattivatoIsFalse(long idLezione);
 }

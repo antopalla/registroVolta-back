@@ -12,6 +12,7 @@ public interface ModuloService {
 
     Modulo getModulo(long id);
     List<Modulo> getModuli();
+    List<Modulo> getModuliByDocente(long idDocente);
     List<Modulo> getModuliByCorso(long idCorso);
 
 

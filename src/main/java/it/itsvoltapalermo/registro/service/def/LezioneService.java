@@ -2,6 +2,7 @@ package it.itsvoltapalermo.registro.service.def;
 
 import it.itsvoltapalermo.registro.model.Lezione;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface LezioneService {
@@ -12,5 +13,7 @@ public interface LezioneService {
 
     Lezione getLezione (long id);
     List<Lezione> getLezioni();
+    List<Lezione> getLezioniByCorsoId(long idCorso);
+    List<Lezione> getLezioniByCorsoIdAndData(long idCorso, LocalDate data);
 
 }

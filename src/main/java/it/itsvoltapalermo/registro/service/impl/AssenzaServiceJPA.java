@@ -48,4 +48,9 @@ public class AssenzaServiceJPA implements AssenzaService {
     public List<Assenza> getAssenzeByStudente(long idStudente) {
         return repo.findAllByStudente_IdAndDisattivatoIsFalse(idStudente);
     }
+
+    @Override
+    public List<Assenza> getAssenzeByLezione(long idLezione) {
+        return repo.findAllByLezione_IdAndDisattivatoIsFalse(idLezione);
+    }
 }

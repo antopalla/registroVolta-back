@@ -50,7 +50,7 @@ public class DocenteController {
         return ResponseEntity.ok(tDTO);
     }
 
-    @GetMapping("/admin/docente/getAll")
+    @GetMapping("/tutor/docente/getAll")
     public ResponseEntity<List<DocenteResponseDTO>> getAllDocente () {
         List<DocenteResponseDTO> tDTO = facade.getDocenti();
         return ResponseEntity.ok(tDTO);

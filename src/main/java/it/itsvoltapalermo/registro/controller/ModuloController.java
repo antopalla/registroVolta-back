@@ -4,9 +4,11 @@ import it.itsvoltapalermo.registro.dto.request.didattica.AggiungiModuloRequestDT
 import it.itsvoltapalermo.registro.dto.request.didattica.ModificaModuloRequestDTO;
 import it.itsvoltapalermo.registro.dto.response.didattica.ModuloResponseDTO;
 import it.itsvoltapalermo.registro.facade.ModuloFacade;
+import it.itsvoltapalermo.registro.model.Utente;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,9 +48,18 @@ public class ModuloController {
         List<ModuloResponseDTO> mDTOList = facade.getAllModuli();
         return ResponseEntity.ok().body(mDTOList);
     }
-    @GetMapping("/admin/modulo/getAllByCorso/{idCorso}")
+
+    @GetMapping("/docente/modulo/getAllByDocente")
+    public ResponseEntity<List<ModuloResponseDTO>> getAllModuliByDocente(UsernamePasswordAuthenticationToken upat){
+        Utente u = (Utente)upat.getPrincipal();
+        List<ModuloResponseDTO> mDTOList = facade.getAllModuliByDocente(u.getId());
+        return ResponseEntity.ok().body(mDTOList);
+    }
+
+    @GetMapping("/docente/modulo/getAllByCorso/{idCorso}")
     public ResponseEntity<List<ModuloResponseDTO>> getAllModuliByCorso(@PathVariable long idCorso){
         List<ModuloResponseDTO> mDTOList = facade.getAllModuliByCorso(idCorso);
         return ResponseEntity.ok().body(mDTOList);
     }
+
 }

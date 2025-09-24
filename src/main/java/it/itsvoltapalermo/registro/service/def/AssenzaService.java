@@ -17,4 +17,6 @@ public interface AssenzaService {
 
     List<Assenza> getAssenzeByStudente (long idStudente);
 
+    List<Assenza> getAssenzeByLezione (long idLezione);
+
 }

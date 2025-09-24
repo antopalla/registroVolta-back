@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -44,6 +45,18 @@ public class LezioneController {
     @GetMapping("/tutor/lezione/getAll")
     public ResponseEntity<List<LezioneResponseDTO>> getAllLezioni() {
         List<LezioneResponseDTO> lDTOList = facade.getAllLezioni();
+        return ResponseEntity.ok().body(lDTOList);
+    }
+
+    @GetMapping("/docente/lezione/getLezioniByCorsoId/{idCorso}")
+    public ResponseEntity<List<LezioneResponseDTO>> getLezioniByCorsoId(@PathVariable long idCorso) {
+        List<LezioneResponseDTO> lDTOList = facade.getLezioniByCorsoId(idCorso);
+        return ResponseEntity.ok().body(lDTOList);
+    }
+
+    @GetMapping("/docente/lezione/getLezioniByCorsoIdAndData/{idCorso}/{data}")
+    public ResponseEntity<List<LezioneResponseDTO>> getLezioniByCorsoIdAndData(@PathVariable long idCorso, @PathVariable String data) {
+        List<LezioneResponseDTO> lDTOList = facade.getLezioniByCorsoIdAndData(idCorso, LocalDate.parse(data));
         return ResponseEntity.ok().body(lDTOList);
     }
 }

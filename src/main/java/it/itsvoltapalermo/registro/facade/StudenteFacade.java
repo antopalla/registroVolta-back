@@ -36,7 +36,7 @@ public class StudenteFacade {
 
     public UsernamePasswordResponseDTO aggiungiStudente(AggiungiStudenteRequestDTO request){
         Studente s = sMapper.fromAggiungiStudenteRequestDTO(request);
-        s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
+        if(request.getIdDiario() != 0) s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
         s.setCorso(cService.getCorso(request.getIdCorso()));
         s.setRuolo(Ruolo.STUDENTE);
 
@@ -68,7 +68,7 @@ public class StudenteFacade {
             s.setNome(request.getNome());
             s.setCognome(request.getCognome());
             s.setCorso(cService.getCorso(request.getIdCorso()));
-            s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
+            if (request.getIdDiario() != 0) s.setDiarioDiBordo(dService.getDiario(request.getIdDiario()));
             s.setCodiceFiscale(request.getCodiceFiscale());
             s.setDataNascita(request.getDataNascita());
 
@@ -89,8 +89,7 @@ public class StudenteFacade {
         return sMapper.toStudenteResponseListDTO(sService.getStudenti());
     }
 
-    public List<StudenteResponseDTO> getStudentiByClasse(long id){
-
+    public List<StudenteResponseDTO> getStudentiByCorso(long id){
         return sMapper.toStudenteResponseListDTO(sService.getStudentiByCorso(id));
     }
 

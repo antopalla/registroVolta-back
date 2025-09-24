@@ -13,6 +13,7 @@ import it.itsvoltapalermo.registro.service.def.ModuloService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -36,6 +37,8 @@ public class LezioneFacade {
 
     public void modificaLezione(ModificaLezioneRequestDTO request) {
         Lezione l = lService.getLezione(request.getId());
+        l.setOraInizio(request.getOraInizio());
+        l.setOraFine(request.getOraFine());
         l.setModulo(mService.getModulo(request.getIdModulo()));
         l.setCorso(cService.getCorso(request.getIdCorso()));
         l.setDocente(dService.getDocente(request.getIdDocente()));
@@ -53,5 +56,13 @@ public class LezioneFacade {
 
     public List<LezioneResponseDTO> getAllLezioni() {
         return lMapper.toLezioneResponseDTOList(lService.getLezioni());
+    }
+
+    public List<LezioneResponseDTO> getLezioniByCorsoId(long idCorso) {
+        return lMapper.toLezioneResponseDTOList(lService.getLezioniByCorsoId(idCorso));
+    }
+
+    public List<LezioneResponseDTO> getLezioniByCorsoIdAndData(long idCorso, LocalDate data) {
+        return lMapper.toLezioneResponseDTOList(lService.getLezioniByCorsoIdAndData(idCorso, data));
     }
 }

@@ -50,6 +50,10 @@ public class ModuloFacade {
         return mMapper.toModuloResponseDTOList(mService.getModuli());
     }
 
+    public List<ModuloResponseDTO> getAllModuliByDocente(long idDocente) {
+        return mMapper.toModuloResponseDTOList(mService.getModuliByDocente(idDocente));
+    }
+
     public List<ModuloResponseDTO> getAllModuliByCorso(long idCorso) {
         return mMapper.toModuloResponseDTOList(mService.getModuliByCorso(idCorso));
     }

@@ -4,6 +4,7 @@ import it.itsvoltapalermo.registro.exceptions.CustomResponseStatusException;
 import it.itsvoltapalermo.registro.model.Docente;
 import it.itsvoltapalermo.registro.repository.DocenteRepository;
 import it.itsvoltapalermo.registro.service.def.DocenteService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,7 @@ public class DocenteServiceJPA implements DocenteService {
         repo.save(d);
     }
 
+    @Transactional
     @Override
     public void modificaDocente(Docente d) {
         if(d.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
@@ -35,16 +37,19 @@ public class DocenteServiceJPA implements DocenteService {
         repo.save(d);
     }
 
+    @Transactional
     @Override
     public Docente getDocenteByUsername(String username) {
         return repo.findByUsernameAndDisattivatoIsFalse(username).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "username", "Docente non trovato"));
     }
 
+    @Transactional
     @Override
     public Docente getDocente(long id) {
         return repo.findByIdAndDisattivatoIsFalse(id).orElseThrow(() -> new CustomResponseStatusException(HttpStatus.NOT_FOUND, "id", "Docente non trovato"));
     }
 
+    @Transactional
     @Override
     public List<Docente> getDocenti() {
         return repo.findAllByDisattivatoIsFalse();

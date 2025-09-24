@@ -56,9 +56,9 @@ public class StudenteController {
         return ResponseEntity.ok(sDTOList);
     }
 
-    @GetMapping("/docente/studente/getStudenteByClasse/{id}")
-    public ResponseEntity<List<StudenteResponseDTO>> getStudentiByClasse(@PathVariable long id) {
-        List<StudenteResponseDTO> sDTOList = facade.getStudentiByClasse(id);
+    @GetMapping("/docente/studente/getStudentiByCorso/{id}")
+    public ResponseEntity<List<StudenteResponseDTO>> getStudentiByCorso(@PathVariable long id) {
+        List<StudenteResponseDTO> sDTOList = facade.getStudentiByCorso(id);
         return ResponseEntity.ok(sDTOList);
     }
 

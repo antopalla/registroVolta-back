@@ -11,9 +11,9 @@ public class LezioneResponseDTO {
 
     private long id;
 
-    private LocalDate data;
-    private Time oraInizio;
-    private Time oraFine;
+    private String data;
+    private String oraInizio;
+    private String oraFine;
 
     private String descrizione;
 

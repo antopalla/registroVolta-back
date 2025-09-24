@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -25,7 +26,6 @@ public class LezioneServiceJPA implements LezioneService {
     public void modificaLezione(Lezione l) {
         if(l.getId() < 1) throw new CustomResponseStatusException(HttpStatus.BAD_REQUEST, "id", "id non valido");
         repo.save(l);
-
     }
 
     @Override
@@ -43,5 +43,15 @@ public class LezioneServiceJPA implements LezioneService {
     @Override
     public List<Lezione> getLezioni() {
         return repo.findAllByDisattivatoIsFalse();
+    }
+
+    @Override
+    public List<Lezione> getLezioniByCorsoId(long idCorso) {
+        return repo.findAllByDisattivatoIsFalseAndCorso_Id(idCorso);
+    }
+
+    @Override
+    public List<Lezione> getLezioniByCorsoIdAndData(long idCorso, LocalDate data) {
+        return repo.findAllByDisattivatoIsFalseAndDataAndCorso_Id(data, idCorso);
     }
 }

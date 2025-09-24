@@ -4,15 +4,18 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.sql.Time;
+import java.time.LocalDate;
+
 @Data
 public class ModificaLezioneRequestDTO {
 
     @NotNull(message = "L'id non può essere nullo")
     private long id;
 
-    private String data;
-    private String oraInizio;
-    private String oraFine;
+    private LocalDate data;
+    private Time oraInizio;
+    private Time oraFine;
 
     @NotBlank(message = "La descrizione non può essere vuota")
     private String descrizione;

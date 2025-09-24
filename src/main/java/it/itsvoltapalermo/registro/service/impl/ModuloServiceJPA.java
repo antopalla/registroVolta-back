@@ -47,6 +47,11 @@ public class ModuloServiceJPA implements ModuloService {
     }
 
     @Override
+    public List<Modulo> getModuliByDocente(long idDocente) {
+        return repo.findAllByDocente_IdAndDisattivatoIsFalse(idDocente);
+    }
+
+    @Override
     public List<Modulo> getModuliByCorso(long idCorso) {
         return repo.findAllByCorso_IdAndDisattivatoIsFalse(idCorso);
     }

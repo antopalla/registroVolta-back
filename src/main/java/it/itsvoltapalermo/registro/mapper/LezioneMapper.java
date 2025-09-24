@@ -25,9 +25,9 @@ public class LezioneMapper {
         LezioneResponseDTO lDTO = new LezioneResponseDTO();
         lDTO.setId(l.getId());
         lDTO.setDescrizione(l.getDescrizione());
-        lDTO.setData(l.getData());
-        lDTO.setOraInizio(l.getOraInizio());
-        lDTO.setOraFine(l.getOraFine());
+        lDTO.setData(l.getData().toString());
+        lDTO.setOraInizio(l.getOraInizio().toString());
+        lDTO.setOraFine(l.getOraFine().toString());
         lDTO.setIdCorso(l.getCorso().getId());
         lDTO.setIdDocente(l.getDocente().getId());
         lDTO.setIdModulo(l.getModulo().getId());
